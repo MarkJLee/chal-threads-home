@@ -1,8 +1,8 @@
 import 'package:chal_threads_home/features/home/widgets/post_bottom_widget.dart';
+import 'package:chal_threads_home/features/home/widgets/post_data.dart';
 import 'package:chal_threads_home/features/home/widgets/post_header_widget.dart';
 import 'package:chal_threads_home/features/home/widgets/post_media_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -12,32 +12,37 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemBuilder: (context, index) => Padding(
-        padding: const EdgeInsets.all(10),
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width * 0.8,
-          child: Column(
-            children: [
-              const PostHeaderWidget(
-                postText: "Vine after seeing the Threads logo unveiled",
-                postTime: "2m",
-                userIcon: FaIcon(
-                  FontAwesomeIcons.twitch,
-                  size: 40,
+      itemCount:
+          postsData.length, // Set the item count to the length of postsData
+      itemBuilder: (context, index) {
+        final post = postsData[index]; // Get the post data at the current index
+        return Padding(
+          padding: const EdgeInsets.all(10),
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width * 0.7,
+            child: Column(
+              children: [
+                PostHeaderWidget(
+                  postText: post.postText,
+                  postTime: post.postTime,
+                  userIcon: post.userIcon,
+                  userName: post.userName,
                 ),
-                userName: "Twitch",
-              ),
-              const SizedBox(height: 8),
-              PostMediaWidget(
-                image: Image.asset(
-                  "assets/0.jpg",
+                const SizedBox(height: 8),
+                PostMediaWidget(
+                  images: post.images, // Use the images from the post data
                 ),
-              ),
-              const PostBottomWidget(replies: 36, likes: 391),
-            ],
+                PostBottomWidget(
+                  repImages: post.repImages,
+                  replies: post.replies,
+                  likes: post.likes,
+                ),
+                const Divider()
+              ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
