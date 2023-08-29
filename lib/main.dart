@@ -1,15 +1,19 @@
+import 'package:chal_threads_home/features/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ThreadsApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class ThreadsApp extends StatelessWidget {
+  const ThreadsApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp();
+    return const MaterialApp(
+      title: "Threads Clone",
+      home: HomeScreen(),
+    );
   }
 }
