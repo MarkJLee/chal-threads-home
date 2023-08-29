@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PostBottomWidget extends StatelessWidget {
   final int replies;
   final int likes;
+  final List<Widget> repImages;
 
   const PostBottomWidget({
     required this.replies,
     required this.likes,
+    required this.repImages,
     super.key,
   });
 
@@ -17,9 +18,37 @@ class PostBottomWidget extends StatelessWidget {
       padding: const EdgeInsets.only(top: 15),
       child: Row(
         children: [
-          const FaIcon(
-            FontAwesomeIcons.earthAmericas,
-            size: 30,
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.09,
+            height: MediaQuery.of(context).size.width * 0.09,
+            child: Stack(
+              children: [
+                Positioned(
+                  left: 0,
+                  top: 10,
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.04,
+                    child: ClipOval(child: repImages[0]),
+                  ),
+                ),
+                Positioned(
+                  bottom: 0,
+                  right: 10,
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.03,
+                    child: ClipOval(child: repImages[1]),
+                  ),
+                ),
+                Positioned(
+                  right: 0,
+                  top: 0,
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.05,
+                    child: ClipOval(child: repImages[2]),
+                  ),
+                ),
+              ],
+            ),
           ),
           const SizedBox(
             width: 10,
