@@ -22,7 +22,7 @@ This project replicates a segment of the Home screen from the Threads applicatio
 
 ## Demo Link
 
-[]()
+[Threads-home](https://imgur.com/a/iWzhhGD)
 
 ### Screenshots
 
