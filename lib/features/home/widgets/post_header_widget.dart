@@ -34,7 +34,8 @@ class PostHeaderWidget extends StatelessWidget {
                     children: [
                       Text(
                         userName,
-                        style: const TextStyle(fontWeight: FontWeight.bold),
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
                       ),
                       const SizedBox(width: 5),
                       const FaIcon(
@@ -48,7 +49,10 @@ class PostHeaderWidget extends StatelessWidget {
                     children: [
                       Text(
                         postTime,
-                        style: const TextStyle(color: Colors.grey),
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 16,
+                        ),
                       ),
                       const SizedBox(width: 10),
                       const FaIcon(
@@ -59,7 +63,12 @@ class PostHeaderWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              Text(postText),
+              Text(
+                postText,
+                style: const TextStyle(
+                  fontSize: 16,
+                ),
+              ),
             ],
           ),
         ),

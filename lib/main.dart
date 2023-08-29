@@ -1,4 +1,4 @@
-import 'package:chal_threads_home/features/home/home_screen.dart';
+import 'package:chal_threads_home/initial_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,7 +13,7 @@ class ThreadsApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: "Threads Clone",
-      home: HomeScreen(),
+      home: InitialScreen(),
     );
   }
 }
