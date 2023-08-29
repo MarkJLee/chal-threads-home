@@ -21,7 +21,25 @@ class PostHeaderWidget extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(right: 10),
-          child: userIcon,
+          child: Stack(
+            children: [
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.11,
+                child: ClipOval(child: userIcon),
+              ),
+              Positioned(
+                bottom: 0,
+                right: 0,
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.white, width: 2)),
+                  child: const FaIcon(FontAwesomeIcons.circlePlus, size: 20),
+                ),
+              ),
+            ],
+          ),
         ),
         Expanded(
           child: Column(
