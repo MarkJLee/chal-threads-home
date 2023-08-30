@@ -1,3 +1,4 @@
+import 'package:chal_threads_home/features/home/widgets/post_report_bottom_sheet_widget.dart';
 import 'package:flutter/material.dart';
 
 class PostActionButtonsInBottomSheetWidget extends StatelessWidget {
@@ -6,6 +7,21 @@ class PostActionButtonsInBottomSheetWidget extends StatelessWidget {
     super.key,
     required this.follow,
   });
+
+  Future<void> _onReportTapped(BuildContext context) async {
+    await showModalBottomSheet(
+      showDragHandle: true,
+      context: context,
+      builder: (context) => PostReportBottomSheetWidget(),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
+      // backgroundColor: Colors.transparent,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,14 +93,20 @@ class PostActionButtonsInBottomSheetWidget extends StatelessWidget {
                   ),
                 ),
                 Divider(color: Colors.grey[300], thickness: 1),
-                const Padding(
-                  padding: EdgeInsets.only(left: 20.0, bottom: 10),
-                  child: Text(
-                    "Report",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.red,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                    _onReportTapped(context);
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.only(left: 20.0, bottom: 10),
+                    child: Text(
+                      "Report",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red,
+                      ),
                     ),
                   ),
                 ),
