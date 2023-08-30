@@ -20,9 +20,16 @@ This project replicates a segment of the Home screen from the Threads applicatio
 -   Highlight the active tab with a black icon; inactive tabs should display a grey icon.
 -   Utilize a Placeholder for non-implemented screens.
 
+### Bottom Sheet
+
+-   When the user taps the "•••" icon, a sliding panel(BottomSheet) should come from below.
+-   This sliding panel should include options for "Unfollow", "Mute", "Hide", and "Report".
+-   Tapping the "Report" option should navigate the user to a new view within the sliding panel.
+-   This Report view should feature a title bar and a series of list items.
+
 ## Demo Link
 
-[Threads-home](https://imgur.com/a/iWzhhGD)
+[Threads-home]()
 
 ### Screenshots
 
