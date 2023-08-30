@@ -29,7 +29,8 @@ This project replicates a segment of the Home screen from the Threads applicatio
 
 ## Demo Link
 
-[Threads-home]()
+[Threads-home](https://imgur.com/a/iWzhhGD)
+[Threads-report](https://imgur.com/a/wGZpwMb)
 
 ### Screenshots
 
