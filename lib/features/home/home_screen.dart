@@ -27,6 +27,7 @@ class HomeScreen extends StatelessWidget {
                   postTime: post.postTime,
                   userIcon: post.userIcon,
                   userName: post.userName,
+                  follow: post.follow,
                 ),
                 const SizedBox(height: 8),
                 PostMediaWidget(

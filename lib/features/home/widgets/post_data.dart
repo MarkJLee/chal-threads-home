@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 class Post {
+  final bool follow;
   final Widget userIcon;
   final String userName;
   final String postText;
@@ -13,6 +14,7 @@ class Post {
   final List<Widget> repImages;
 
   Post({
+    required this.follow,
     required this.userIcon,
     required this.userName,
     required this.postText,
@@ -26,6 +28,7 @@ class Post {
 
 List<Post> postsData = [
   Post(
+    follow: true,
     userIcon: Image.asset("assets/p-4.jpg"),
     userName: 'Podo',
     postText: 'I love taking my dog for a walk.',
@@ -43,6 +46,7 @@ List<Post> postsData = [
     ],
   ),
   Post(
+    follow: false,
     userIcon: Image.asset("assets/p-0.jpg"),
     userName: 'Poddle',
     postText: 'Did you see that adorable puppy? I can see!',
@@ -57,6 +61,7 @@ List<Post> postsData = [
     ],
   ),
   Post(
+    follow: false,
     userIcon: Image.asset("assets/p-0.jpg"),
     userName: 'Poddle',
     postText: 'My dog is the cutest thing ever.',
@@ -71,6 +76,7 @@ List<Post> postsData = [
     ],
   ),
   Post(
+    follow: false,
     userIcon: Image.asset("assets/p-0.jpg"),
     userName: 'Poddle',
     postText: "Dogs are truly a my best friend.",
@@ -89,6 +95,7 @@ List<Post> postsData = [
     ],
   ),
   Post(
+    follow: true,
     userIcon: Image.asset("assets/p-2.jpg"),
     userName: 'Kalmar',
     postText: "Dogs are truly a man's best friend.",
@@ -103,6 +110,7 @@ List<Post> postsData = [
     ],
   ),
   Post(
+    follow: false,
     userIcon: Image.asset("assets/p-1.jpg"),
     userName: 'RiRi',
     postText: "Where are these dogs looking at?",
@@ -117,6 +125,7 @@ List<Post> postsData = [
     ],
   ),
   Post(
+    follow: true,
     userIcon: Image.asset("assets/p-4.jpg"),
     userName: 'Podo',
     postText: 'Puppies have the most innocent eyes.',
@@ -131,6 +140,7 @@ List<Post> postsData = [
     ],
   ),
   Post(
+    follow: false,
     userIcon: Image.asset("assets/p-1.jpg"),
     userName: 'RiRi',
     postText: "My dog's wagging tail always cheers me up.",
@@ -145,6 +155,7 @@ List<Post> postsData = [
     ],
   ),
   Post(
+    follow: true,
     userIcon: Image.asset("assets/p-4.jpg"),
     userName: 'Podo',
     postText: 'Every dog has its day.',
@@ -159,6 +170,7 @@ List<Post> postsData = [
     ],
   ),
   Post(
+    follow: true,
     userIcon: Image.asset("assets/p-2.jpg"),
     userName: 'Kalmar',
     postText: 'My dog is the cutest thing ever.',

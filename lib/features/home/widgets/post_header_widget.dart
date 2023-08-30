@@ -1,3 +1,4 @@
+import 'package:chal_threads_home/features/home/widgets/post_action_buttons_in_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -6,6 +7,7 @@ class PostHeaderWidget extends StatelessWidget {
   final String postText;
   final String postTime;
   final Widget userIcon;
+  final bool follow;
 
   const PostHeaderWidget({
     Key? key,
@@ -13,7 +15,23 @@ class PostHeaderWidget extends StatelessWidget {
     required this.postText,
     required this.postTime,
     required this.userIcon,
+    required this.follow,
   }) : super(key: key);
+
+  Future<void> _onEllipsisTapped(BuildContext context) async {
+    await showModalBottomSheet(
+      showDragHandle: true, // show drag bar at the top
+      context: context,
+      builder: (context) => const PostActionButtonsInBottomSheetWidget(),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
+      // backgroundColor: Colors.transparent,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +53,9 @@ class PostHeaderWidget extends StatelessWidget {
                       color: Colors.white,
                       shape: BoxShape.circle,
                       border: Border.all(color: Colors.white, width: 2)),
-                  child: const FaIcon(FontAwesomeIcons.circlePlus, size: 20),
+                  child: follow
+                      ? Container() // follow
+                      : const FaIcon(FontAwesomeIcons.circlePlus, size: 20),
                 ),
               ),
             ],
@@ -73,9 +93,12 @@ class PostHeaderWidget extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 10),
-                      const FaIcon(
-                        FontAwesomeIcons.ellipsis,
-                        size: 18,
+                      GestureDetector(
+                        onTap: () => _onEllipsisTapped(context),
+                        child: const FaIcon(
+                          FontAwesomeIcons.ellipsis,
+                          size: 18,
+                        ),
                       ),
                     ],
                   ),
