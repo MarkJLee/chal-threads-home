@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class PostActionButtonsInBottomSheetWidget extends StatelessWidget {
+  final bool follow;
   const PostActionButtonsInBottomSheetWidget({
     super.key,
+    required this.follow,
   });
 
   @override
@@ -27,19 +29,21 @@ class PostActionButtonsInBottomSheetWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Padding(
-                  padding: EdgeInsets.only(left: 20.0, top: 10),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0, top: 10),
                   child: Text(
-                    "Unfollow",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    follow ? "Unfollow" : "Mute",
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                 ),
                 Divider(color: Colors.grey[300], thickness: 1),
-                const Padding(
-                  padding: EdgeInsets.only(left: 20.0, bottom: 10),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0, bottom: 10),
                   child: Text(
-                    "Mute",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    follow ? "Mute" : "Hide",
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                 ),
               ],
@@ -61,11 +65,15 @@ class PostActionButtonsInBottomSheetWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Padding(
-                  padding: EdgeInsets.only(left: 20.0, top: 10),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0, top: 10),
                   child: Text(
-                    "Hide",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    follow ? "Hide" : "Block",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: follow ? Colors.black : Colors.red,
+                    ),
                   ),
                 ),
                 Divider(color: Colors.grey[300], thickness: 1),

@@ -22,7 +22,9 @@ class PostHeaderWidget extends StatelessWidget {
     await showModalBottomSheet(
       showDragHandle: true, // show drag bar at the top
       context: context,
-      builder: (context) => const PostActionButtonsInBottomSheetWidget(),
+      builder: (context) => PostActionButtonsInBottomSheetWidget(
+        follow: follow,
+      ),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),
