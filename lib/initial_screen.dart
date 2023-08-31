@@ -1,4 +1,5 @@
 import 'package:chal_threads_home/features/home/home_screen.dart';
+import 'package:chal_threads_home/features/write/write_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -13,37 +14,58 @@ class InitialScreen extends StatefulWidget {
 class _InitialScreenState extends State<InitialScreen> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _widgetOptions = <Widget>[
-    HomeScreen(),
-    Center(
+  static final List<Widget> _widgetOptions = <Widget>[
+    const HomeScreen(),
+    const Center(
       child: Text(
         'Index 1: Search',
         style: TextStyle(fontSize: 40),
       ),
     ),
-    Center(
-      child: Text(
-        'Index 2: Write',
-        style: TextStyle(fontSize: 40),
-      ),
-    ),
-    Center(
+    const HomeScreen(),
+    const Center(
       child: Text(
         'Index 3: Notifications',
         style: TextStyle(fontSize: 40),
       ),
     ),
-    Center(
+    const Center(
       child: Text(
         'Index 4: Profile',
         style: TextStyle(fontSize: 40),
       ),
     ),
   ];
+
+  void _showWriteModal() {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return const Center(
+          child: WriteScreen(),
+        );
+      },
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
+      useSafeArea: true,
+      enableDrag: true,
+    );
+  }
+
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    if (index == 2) {
+      // Assuming the 3rd item (index 2) should trigger the bottom sheet
+      _showWriteModal();
+    } else {
+      setState(() {
+        _selectedIndex = index;
+      });
+    }
   }
 
   @override
