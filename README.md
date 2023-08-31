@@ -27,10 +27,17 @@ This project replicates a segment of the Home screen from the Threads applicatio
 -   Tapping the "Report" option should navigate the user to a new view within the sliding panel.
 -   This Report view should feature a title bar and a series of list items.
 
+### Write Screen
+
+-   Upon clicking the third button in the navigation, the user should be navigated to the Write view.
+-   The Write view should slide up from the bottom of the display.
+-   There should be a "Cancel" button that allows users to return to the previous screen.
+-   Once the user enters text into the input field, the "Post" button should become active.
+
 ## Demo Link
 
-[Threads-home](https://imgur.com/a/iWzhhGD)
-[Threads-report](https://imgur.com/a/wGZpwMb)
+-   [Threads-home](https://imgur.com/a/iWzhhGD)
+-   [Threads-report](https://imgur.com/a/wGZpwMb)
 
 ### Screenshots
 
