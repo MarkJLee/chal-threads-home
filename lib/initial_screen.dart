@@ -1,4 +1,5 @@
 import 'package:chal_threads_home/features/home/home_screen.dart';
+import 'package:chal_threads_home/features/search/search_screen.dart';
 import 'package:chal_threads_home/features/write/write_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -16,12 +17,7 @@ class _InitialScreenState extends State<InitialScreen> {
 
   static final List<Widget> _widgetOptions = <Widget>[
     const HomeScreen(),
-    const Center(
-      child: Text(
-        'Index 1: Search',
-        style: TextStyle(fontSize: 40),
-      ),
-    ),
+    const SearchScreen(),
     const HomeScreen(),
     const Center(
       child: Text(
@@ -68,6 +64,51 @@ class _InitialScreenState extends State<InitialScreen> {
     }
   }
 
+  Widget _selectTitleWidget(int index) {
+    switch (index) {
+      case 0:
+        return SvgPicture.asset('assets/threads.svg', height: 40);
+      case 1:
+        return const Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            "Search",
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        );
+      case 3:
+        return const Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            "Activity",
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        );
+      case 4:
+        return const Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            "Profile",
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        );
+      default:
+        return Container();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,7 +116,7 @@ class _InitialScreenState extends State<InitialScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title: SvgPicture.asset('assets/threads.svg', height: 40),
+        title: _selectTitleWidget(_selectedIndex),
       ),
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: Padding(
