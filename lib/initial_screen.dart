@@ -1,3 +1,4 @@
+import 'package:chal_threads_home/features/activity/activity_screen.dart';
 import 'package:chal_threads_home/features/home/home_screen.dart';
 import 'package:chal_threads_home/features/search/search_screen.dart';
 import 'package:chal_threads_home/features/write/write_screen.dart';
@@ -19,12 +20,7 @@ class _InitialScreenState extends State<InitialScreen> {
     const HomeScreen(),
     const SearchScreen(),
     const HomeScreen(),
-    const Center(
-      child: Text(
-        'Index 3: Notifications',
-        style: TextStyle(fontSize: 40),
-      ),
-    ),
+    const ActivityScreen(),
     const Center(
       child: Text(
         'Index 4: Profile',
@@ -129,26 +125,30 @@ class _InitialScreenState extends State<InitialScreen> {
           elevation: 0,
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
-          items: const [
-            BottomNavigationBarItem(
+          items: [
+            const BottomNavigationBarItem(
               label: "",
               icon: FaIcon(FontAwesomeIcons.house),
             ),
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
               label: "",
               icon: FaIcon(FontAwesomeIcons.magnifyingGlass),
             ),
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
               label: "",
               icon: FaIcon(FontAwesomeIcons.penToSquare),
             ),
             BottomNavigationBarItem(
               label: "",
-              icon: FaIcon(FontAwesomeIcons.heart),
+              icon: _selectedIndex == 3
+                  ? const FaIcon(FontAwesomeIcons.solidHeart)
+                  : const FaIcon(FontAwesomeIcons.heart),
             ),
             BottomNavigationBarItem(
               label: "",
-              icon: FaIcon(FontAwesomeIcons.user),
+              icon: _selectedIndex == 4
+                  ? const FaIcon(FontAwesomeIcons.solidUser)
+                  : const FaIcon(FontAwesomeIcons.user),
             ),
           ],
         ),
