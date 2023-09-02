@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class Post {
   final bool follow;
   final Widget userIcon;
-  final String userName;
+  final String account;
   final String postText;
   final String postTime;
   final List<Widget> images;
@@ -16,7 +16,7 @@ class Post {
   Post({
     required this.follow,
     required this.userIcon,
-    required this.userName,
+    required this.account,
     required this.postText,
     required this.postTime,
     required this.images,
@@ -30,7 +30,7 @@ List<Post> postsData = [
   Post(
     follow: true,
     userIcon: Image.asset("assets/p-4.jpg"),
-    userName: 'Podo',
+    account: 'Podo',
     postText: 'I love taking my dog for a walk.',
     postTime: '26m',
     images: [
@@ -48,7 +48,7 @@ List<Post> postsData = [
   Post(
     follow: false,
     userIcon: Image.asset("assets/p-0.jpg"),
-    userName: 'Poddle',
+    account: 'Poddle',
     postText: 'Did you see that adorable puppy? I can see!',
     postTime: '18m',
     images: [],
@@ -63,7 +63,7 @@ List<Post> postsData = [
   Post(
     follow: false,
     userIcon: Image.asset("assets/p-0.jpg"),
-    userName: 'Poddle',
+    account: 'Poddle',
     postText: 'My dog is the cutest thing ever.',
     postTime: '4m',
     images: [Image.asset("assets/7.jpg"), Image.asset("assets/13.jpg")],
@@ -78,7 +78,7 @@ List<Post> postsData = [
   Post(
     follow: false,
     userIcon: Image.asset("assets/p-0.jpg"),
-    userName: 'Poddle',
+    account: 'Poddle',
     postText: "Dogs are truly a my best friend.",
     postTime: '48m',
     images: [
@@ -97,7 +97,7 @@ List<Post> postsData = [
   Post(
     follow: true,
     userIcon: Image.asset("assets/p-2.jpg"),
-    userName: 'Kalmar',
+    account: 'Kalmar',
     postText: "Dogs are truly a man's best friend.",
     postTime: '9m',
     images: [Image.asset("assets/6.jpg"), Image.asset("assets/8.jpg")],
@@ -112,7 +112,7 @@ List<Post> postsData = [
   Post(
     follow: false,
     userIcon: Image.asset("assets/p-1.jpg"),
-    userName: 'RiRi',
+    account: 'RiRi',
     postText: "Where are these dogs looking at?",
     postTime: '34m',
     images: [Image.asset("assets/3.jpg")],
@@ -127,7 +127,7 @@ List<Post> postsData = [
   Post(
     follow: true,
     userIcon: Image.asset("assets/p-4.jpg"),
-    userName: 'Podo',
+    account: 'Podo',
     postText: 'Puppies have the most innocent eyes.',
     postTime: '17m',
     images: [Image.asset("assets/20.jpg")],
@@ -142,7 +142,7 @@ List<Post> postsData = [
   Post(
     follow: false,
     userIcon: Image.asset("assets/p-1.jpg"),
-    userName: 'RiRi',
+    account: 'RiRi',
     postText: "My dog's wagging tail always cheers me up.",
     postTime: '2m',
     images: [Image.asset("assets/17.jpg")],
@@ -157,7 +157,7 @@ List<Post> postsData = [
   Post(
     follow: true,
     userIcon: Image.asset("assets/p-4.jpg"),
-    userName: 'Podo',
+    account: 'Podo',
     postText: 'Every dog has its day.',
     postTime: '46m',
     images: [Image.asset("assets/15.jpg")],
@@ -172,7 +172,7 @@ List<Post> postsData = [
   Post(
     follow: true,
     userIcon: Image.asset("assets/p-2.jpg"),
-    userName: 'Kalmar',
+    account: 'Kalmar',
     postText: 'My dog is the cutest thing ever.',
     postTime: '52m',
     images: [Image.asset("assets/2.jpg")],

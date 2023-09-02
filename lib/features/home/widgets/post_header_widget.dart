@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PostHeaderWidget extends StatelessWidget {
-  final String userName;
+  final String account;
   final String postText;
   final String postTime;
   final Widget userIcon;
@@ -11,7 +11,7 @@ class PostHeaderWidget extends StatelessWidget {
 
   const PostHeaderWidget({
     Key? key,
-    required this.userName,
+    required this.account,
     required this.postText,
     required this.postTime,
     required this.userIcon,
@@ -73,7 +73,7 @@ class PostHeaderWidget extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        userName,
+                        account,
                         style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 16),
                       ),
