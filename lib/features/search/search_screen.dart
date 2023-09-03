@@ -52,11 +52,21 @@ class _SearchScreenState extends State<SearchScreen> {
                     children: [
                       Text(filteredUsers[index].account),
                       const SizedBox(width: 5),
-                      const FaIcon(
-                        FontAwesomeIcons.circleCheck,
-                        size: 12,
-                        color: Colors.blue,
-                      )
+                      const Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.certificate,
+                            size: 13,
+                            color: Colors.blue,
+                          ),
+                          FaIcon(
+                            FontAwesomeIcons.check,
+                            size: 8,
+                            color: Colors.white,
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                   subtitle: Column(

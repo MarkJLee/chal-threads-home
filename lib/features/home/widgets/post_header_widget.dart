@@ -78,11 +78,21 @@ class PostHeaderWidget extends StatelessWidget {
                             fontWeight: FontWeight.bold, fontSize: 16),
                       ),
                       const SizedBox(width: 5),
-                      const FaIcon(
-                        FontAwesomeIcons.circleCheck,
-                        size: 12,
-                        color: Colors.blue,
-                      )
+                      const Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.certificate,
+                            size: 13,
+                            color: Colors.blue,
+                          ),
+                          FaIcon(
+                            FontAwesomeIcons.check,
+                            size: 8,
+                            color: Colors.white,
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                   Row(
