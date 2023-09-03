@@ -34,6 +34,14 @@ This project replicates a segment of the Home screen from the Threads applicatio
 -   There should be a "Cancel" button that allows users to return to the previous screen.
 -   Once the user enters text into the input field, the "Post" button should become active.
 
+### Search Screen
+
+-   The search window should match users when searched using the input text.
+
+### Activity Screen
+
+-   The top should feature a horizontal scroll button to filter each post.
+
 ## Demo Link
 
 -   [Threads-home](https://imgur.com/a/iWzhhGD)
