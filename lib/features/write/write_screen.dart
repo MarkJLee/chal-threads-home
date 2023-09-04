@@ -113,7 +113,7 @@ class _WriteScreenState extends State<WriteScreen> {
                         const Align(
                           alignment: Alignment.topCenter,
                           child: Text(
-                            "mark_j",
+                            "Mark_J",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                             ),

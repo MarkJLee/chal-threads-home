@@ -92,33 +92,31 @@ class _SearchScreenState extends State<SearchScreen> {
                     ),
                   ),
                   trailing: Container(
+                    height: 30,
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey),
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: SizedBox(
-                      height: 30,
-                      child: CupertinoButton(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 25,
-                          vertical: 5,
-                        ),
-                        color: Colors.white,
-                        onPressed: () {
-                          setState(() {
-                            filteredUsers[index].follow =
-                                !filteredUsers[index].follow;
-                          });
-                        },
-                        child: Text(
-                          !filteredUsers[index].follow ? "Follow" : "Following",
-                          style: TextStyle(
-                            fontSize: 15,
-                            color: !filteredUsers[index].follow
-                                ? Colors.black
-                                : Colors.grey,
-                            fontWeight: FontWeight.bold,
-                          ),
+                    child: CupertinoButton(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 25,
+                        vertical: 5,
+                      ),
+                      color: Colors.white,
+                      onPressed: () {
+                        setState(() {
+                          filteredUsers[index].follow =
+                              !filteredUsers[index].follow;
+                        });
+                      },
+                      child: Text(
+                        !filteredUsers[index].follow ? "Follow" : "Following",
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: !filteredUsers[index].follow
+                              ? Colors.black
+                              : Colors.grey,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
