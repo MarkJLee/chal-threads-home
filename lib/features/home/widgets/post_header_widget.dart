@@ -6,7 +6,7 @@ class PostHeaderWidget extends StatelessWidget {
   final String account;
   final String postText;
   final String postTime;
-  final Widget userIcon;
+  final String userIcon;
   final bool follow;
 
   const PostHeaderWidget({
@@ -45,7 +45,9 @@ class PostHeaderWidget extends StatelessWidget {
             children: [
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.11,
-                child: ClipOval(child: userIcon),
+                height: MediaQuery.of(context).size.width * 0.11,
+                child:
+                    ClipOval(child: Image.asset(userIcon, fit: BoxFit.cover)),
               ),
               Positioned(
                 bottom: 0,
@@ -78,21 +80,22 @@ class PostHeaderWidget extends StatelessWidget {
                             fontWeight: FontWeight.bold, fontSize: 16),
                       ),
                       const SizedBox(width: 5),
-                      const Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          FaIcon(
-                            FontAwesomeIcons.certificate,
-                            size: 13,
-                            color: Colors.blue,
-                          ),
-                          FaIcon(
-                            FontAwesomeIcons.check,
-                            size: 8,
-                            color: Colors.white,
-                          ),
-                        ],
-                      ),
+                      if (account != "Mark_J") // for ProfileScreen
+                        const Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            FaIcon(
+                              FontAwesomeIcons.certificate,
+                              size: 13,
+                              color: Colors.blue,
+                            ),
+                            FaIcon(
+                              FontAwesomeIcons.check,
+                              size: 8,
+                              color: Colors.white,
+                            ),
+                          ],
+                        ),
                     ],
                   ),
                   Row(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PostMediaWidget extends StatelessWidget {
-  final List<Widget>? images;
+  final List<String>? images;
   const PostMediaWidget({
     Key? key,
     this.images,
@@ -34,7 +34,7 @@ class PostMediaWidget extends StatelessWidget {
                   child: (images == null || images!.isEmpty)
                       ? Container()
                       : images?.length == 1
-                          ? images![0]
+                          ? Image.asset(images![0])
                           : SizedBox(
                               height: MediaQuery.of(context).size.height * 0.25,
                               child: ListView.builder(
@@ -43,7 +43,7 @@ class PostMediaWidget extends StatelessWidget {
                                 itemBuilder: (context, index) {
                                   return Padding(
                                     padding: const EdgeInsets.only(right: 8.0),
-                                    child: images![index],
+                                    child: Image.asset(images![index]),
                                   );
                                 },
                               ),
