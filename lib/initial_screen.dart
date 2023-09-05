@@ -2,13 +2,15 @@ import 'package:chal_threads_home/features/activity/activity_screen.dart';
 import 'package:chal_threads_home/features/home/home_screen.dart';
 import 'package:chal_threads_home/features/profile/profile_screen.dart';
 import 'package:chal_threads_home/features/search/search_screen.dart';
-import 'package:chal_threads_home/features/write/write_screen.dart';
+import 'package:chal_threads_home/features/widgets/modal_helper.dart';
+import 'package:chal_threads_home/features/widgets/threads_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class InitialScreen extends StatefulWidget {
-  const InitialScreen({super.key});
+  final int initialIndex;
+
+  const InitialScreen({Key? key, this.initialIndex = 0}) : super(key: key);
 
   @override
   State<InitialScreen> createState() => _InitialScreenState();
@@ -16,6 +18,12 @@ class InitialScreen extends StatefulWidget {
 
 class _InitialScreenState extends State<InitialScreen> {
   int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = widget.initialIndex;
+  }
 
   static final List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
@@ -25,35 +33,14 @@ class _InitialScreenState extends State<InitialScreen> {
     const ProfileScreen(),
   ];
 
-  void _showWriteModal() {
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return const Center(
-          child: WriteScreen(),
-        );
-      },
-      isScrollControlled: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
-        ),
-      ),
-      useSafeArea: true,
-      enableDrag: true,
-    );
-  }
-
   void _onItemTapped(int index) {
-    if (index == 2) {
-      // Assuming the 3rd item (index 2) should trigger the bottom sheet
-      _showWriteModal();
-    } else {
-      setState(() {
-        _selectedIndex = index;
-      });
-    }
+    setState(() {
+      if (index == 2) {
+        showWriteModal(context);
+        return;
+      }
+      _selectedIndex = index;
+    });
   }
 
   Widget _selectTitleWidget(int index) {
@@ -104,44 +91,8 @@ class _InitialScreenState extends State<InitialScreen> {
         title: _selectTitleWidget(_selectedIndex),
       ),
       body: _widgetOptions.elementAt(_selectedIndex),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(top: 8.0),
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.white,
-          fixedColor: Colors.black,
-          unselectedItemColor: Colors.grey,
-          elevation: 0,
-          currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
-          items: [
-            const BottomNavigationBarItem(
-              label: "",
-              icon: FaIcon(FontAwesomeIcons.house),
-            ),
-            const BottomNavigationBarItem(
-              label: "",
-              icon: FaIcon(FontAwesomeIcons.magnifyingGlass),
-            ),
-            const BottomNavigationBarItem(
-              label: "",
-              icon: FaIcon(FontAwesomeIcons.penToSquare),
-            ),
-            BottomNavigationBarItem(
-              label: "",
-              icon: _selectedIndex == 3
-                  ? const FaIcon(FontAwesomeIcons.solidHeart)
-                  : const FaIcon(FontAwesomeIcons.heart),
-            ),
-            BottomNavigationBarItem(
-              label: "",
-              icon: _selectedIndex == 4
-                  ? const FaIcon(FontAwesomeIcons.solidUser)
-                  : const FaIcon(FontAwesomeIcons.user),
-            ),
-          ],
-        ),
-      ),
+      bottomNavigationBar: ThreadsBottomNavigationBar(
+          selectedIndex: _selectedIndex, onTap: _onItemTapped),
     );
   }
 }
