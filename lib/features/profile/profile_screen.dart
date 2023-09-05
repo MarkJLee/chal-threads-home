@@ -1,6 +1,7 @@
 import 'package:chal_threads_home/features/home/widgets/post_data.dart';
 import 'package:chal_threads_home/features/home/widgets/post_header_widget.dart';
 import 'package:chal_threads_home/features/home/widgets/post_media_widget.dart';
+import 'package:chal_threads_home/features/profile/settings_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -41,6 +42,15 @@ class _ProfileScreenState extends State<ProfileScreen>
     return renderBox?.size.height ?? 50; // VerticalDivider 디폴트 높이는 50
   }
 
+  void _navigateToSettingsScreen() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const SettingsScreen(),
+      ),
+    );
+  }
+
   @override
   void dispose() {
     _tabController.dispose();
@@ -77,18 +87,21 @@ class _ProfileScreenState extends State<ProfileScreen>
                   color: Colors.white,
                 ),
               ),
-              const Row(
+              Row(
                 children: [
-                  FaIcon(
+                  const FaIcon(
                     FontAwesomeIcons.instagram,
                     size: 28,
                     color: Colors.black,
                   ),
-                  SizedBox(width: 20),
-                  FaIcon(
-                    FontAwesomeIcons.bars,
-                    size: 24,
-                    color: Colors.black,
+                  const SizedBox(width: 20),
+                  GestureDetector(
+                    onTap: _navigateToSettingsScreen,
+                    child: const FaIcon(
+                      FontAwesomeIcons.bars,
+                      size: 24,
+                      color: Colors.black,
+                    ),
                   ),
                 ],
               ),
