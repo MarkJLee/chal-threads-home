@@ -42,6 +42,22 @@ This project replicates a segment of the Home screen from the Threads applicatio
 
 -   The top should feature a horizontal scroll button to filter each post.
 
+### Profile Screen
+
+-   The interface comprises a header and two tabbed sections labeled as "Threads" and "Replies".
+-   Leverage the CustomScrollView, SliverAppBar, and SliverPersistentHeader widgets for the implementation of this interface.
+
+### Settings Screen
+
+-   Upon tapping the icon positioned on the upper right quadrant of the profile interface, the user should be navigated to the Settings view.
+-   Utilize the ListTile widget for the layout structure within the Settings view.
+-   Implement a "Log Out" action button. Deploy the CupertinoAlertDialog widget for iOS users and the AlertDialog widget for Android users. This dialog functionality should be demonstrably presented in the submitted video clip.
+
+### Privacy Screen
+
+-   Upon tapping the "Privacy" ListTile, the user should be navigated to the Privacy view.
+-   Within the Privacy view, utilize the SwitchListTile widget for toggle options.
+
 ## Demo Link
 
 -   [Threads-home](https://imgur.com/a/iWzhhGD)
