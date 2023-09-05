@@ -1,5 +1,6 @@
 import 'package:chal_threads_home/features/activity/activity_screen.dart';
 import 'package:chal_threads_home/features/home/home_screen.dart';
+import 'package:chal_threads_home/features/profile/profile_screen.dart';
 import 'package:chal_threads_home/features/search/search_screen.dart';
 import 'package:chal_threads_home/features/write/write_screen.dart';
 import 'package:flutter/material.dart';
@@ -17,16 +18,11 @@ class _InitialScreenState extends State<InitialScreen> {
   int _selectedIndex = 0;
 
   static final List<Widget> _widgetOptions = <Widget>[
-    const HomeScreen(),
+    HomeScreen(),
     const SearchScreen(),
-    const HomeScreen(),
+    HomeScreen(),
     const ActivityScreen(),
-    const Center(
-      child: Text(
-        'Index 4: Profile',
-        style: TextStyle(fontSize: 40),
-      ),
-    ),
+    const ProfileScreen(),
   ];
 
   void _showWriteModal() {
@@ -89,17 +85,8 @@ class _InitialScreenState extends State<InitialScreen> {
           ),
         );
       case 4:
-        return const Align(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            "Profile",
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        );
+        return Container();
+
       default:
         return Container();
     }
@@ -110,6 +97,8 @@ class _InitialScreenState extends State<InitialScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        toolbarHeight:
+            _selectedIndex == 4 ? 0 : null, // hide when profile screen
         backgroundColor: Colors.white,
         elevation: 0,
         title: _selectTitleWidget(_selectedIndex),

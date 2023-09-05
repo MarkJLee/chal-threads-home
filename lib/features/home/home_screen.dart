@@ -5,17 +5,18 @@ import 'package:chal_threads_home/features/home/widgets/post_media_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({
-    super.key,
-  });
+  HomeScreen({
+    Key? key,
+  }) : super(key: key);
 
+  final List<Post> filteredData =
+      postsData.where((element) => element.account != "Mark_J").toList();
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount:
-          postsData.length, // Set the item count to the length of postsData
+      itemCount: filteredData.length,
       itemBuilder: (context, index) {
-        final post = postsData[index]; // Get the post data at the current index
+        final post = filteredData[index];
         return Padding(
           padding: const EdgeInsets.all(10),
           child: SizedBox(
