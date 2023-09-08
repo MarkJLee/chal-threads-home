@@ -34,6 +34,12 @@ This project replicates a segment of the Home screen from the Threads applicatio
 -   There should be a "Cancel" button that allows users to return to the previous screen.
 -   Once the user enters text into the input field, the "Post" button should become active.
 
+(Camera Screen)
+
+-   When the user taps on the attachment icon, the app shall navigate the user to the Camera Screen.
+-   On the Camera Screen, the app shall provide the capability for the user to capture a new photo or select an existing photo from the gallery.
+-   When the photo is captured or selected, the app shall navigate the user back to the Write Screen with the newly captured photo or the selected photo from the gallery.
+
 ### Search Screen
 
 -   The search window should match users when searched using the input text.
