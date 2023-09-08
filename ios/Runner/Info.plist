@@ -53,5 +53,7 @@
 	<string>This app requires access to the camera.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Our app requires access to your photo library for selecting profile pictures.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>To enable GPS location access for Exif data</string>
 </dict>
 </plist>
