@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ThreadsBottomNavigationBar extends StatelessWidget {
-  final int selectedIndex;
-  final Function(int) onTap;
+  final int currentIndex;
+  final Function onItemTapped;
 
   const ThreadsBottomNavigationBar({
     Key? key,
-    required this.selectedIndex,
-    required this.onTap,
+    required this.currentIndex,
+    required this.onItemTapped,
   }) : super(key: key);
 
   @override
@@ -17,16 +17,11 @@ class ThreadsBottomNavigationBar extends StatelessWidget {
       padding: const EdgeInsets.only(top: 8.0),
       child: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.white,
         fixedColor: Colors.black,
         unselectedItemColor: Colors.grey,
         elevation: 0,
-        currentIndex: selectedIndex,
-        onTap: (index) {
-          if (index != selectedIndex) {
-            onTap(index);
-          }
-        },
+        currentIndex: currentIndex,
+        onTap: (int idx) => onItemTapped(idx, context),
         items: [
           const BottomNavigationBarItem(
             label: "",
@@ -42,13 +37,13 @@ class ThreadsBottomNavigationBar extends StatelessWidget {
           ),
           BottomNavigationBarItem(
             label: "",
-            icon: selectedIndex == 3
+            icon: currentIndex == 3
                 ? const FaIcon(FontAwesomeIcons.solidHeart)
                 : const FaIcon(FontAwesomeIcons.heart),
           ),
           BottomNavigationBarItem(
             label: "",
-            icon: selectedIndex == 4
+            icon: currentIndex == 4
                 ? const FaIcon(FontAwesomeIcons.solidUser)
                 : const FaIcon(FontAwesomeIcons.user),
           ),

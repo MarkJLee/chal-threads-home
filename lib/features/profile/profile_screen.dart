@@ -2,11 +2,15 @@ import 'package:chal_threads_home/features/home/widgets/post_data.dart';
 import 'package:chal_threads_home/features/home/widgets/post_header_widget.dart';
 import 'package:chal_threads_home/features/home/widgets/post_media_widget.dart';
 import 'package:chal_threads_home/features/profile/settings_screen.dart';
+import 'package:chal_threads_home/router.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ProfileScreen extends StatefulWidget {
+  static const routeURL = "/profile";
+  static const routeName = "profile";
+
   const ProfileScreen({super.key});
 
   @override
@@ -43,12 +47,7 @@ class _ProfileScreenState extends State<ProfileScreen>
   }
 
   void _navigateToSettingsScreen() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const SettingsScreen(),
-      ),
-    );
+    router.goNamed(SettingsScreen.routeName);
   }
 
   @override

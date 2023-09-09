@@ -5,6 +5,8 @@ import 'package:chal_threads_home/features/home/widgets/post_media_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
+  static String routeURL = "/";
+  static String routeName = "home";
   HomeScreen({
     Key? key,
   }) : super(key: key);

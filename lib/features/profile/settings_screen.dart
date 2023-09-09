@@ -1,10 +1,11 @@
 import 'package:chal_threads_home/features/profile/privacy_screen.dart';
-import 'package:chal_threads_home/features/widgets/modal_helper.dart';
-import 'package:chal_threads_home/features/widgets/threads_bottom_navigation_bar.dart';
+import 'package:chal_threads_home/router.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatefulWidget {
+  static const String routeURL = "settings";
+  static const String routeName = "settings";
   const SettingsScreen({super.key});
 
   @override
@@ -71,163 +72,116 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _scaffoldKey,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0.2,
-        title: const Text(
-          "Settings",
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
+    return Container(
+      color: Colors.white,
+      child: Column(
+        children: [
+          ListTile(
+            leading: const Icon(
+              Icons.person_add_outlined,
+              color: Colors.black,
+              size: 30,
+            ),
+            title: const Text(
+              "Follow and invite friends",
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
+            onTap: () {},
           ),
-        ),
-        leadingWidth: 100,
-        leading: SizedBox(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              IconButton(
-                icon: const Icon(
-                  Icons.arrow_back_ios,
-                  color: Colors.black,
-                ),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
+          ListTile(
+            leading: const Icon(
+              Icons.notifications_none_outlined,
+              color: Colors.black,
+              size: 30,
+            ),
+            title: const Text(
+              "Notifications",
+              style: TextStyle(
+                fontSize: 18,
               ),
-              const Text(
-                "Back",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                ),
-              ),
-            ],
+            ),
+            onTap: () {},
           ),
-        ),
-      ),
-      body: Container(
-        color: Colors.white,
-        child: Column(
-          children: [
-            ListTile(
-              leading: const Icon(
-                Icons.person_add_outlined,
-                color: Colors.black,
-                size: 30,
-              ),
-              title: const Text(
-                "Follow and invite friends",
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-              ),
-              onTap: () {},
+          ListTile(
+            leading: const Icon(
+              Icons.lock_outlined,
+              color: Colors.black,
+              size: 30,
             ),
-            ListTile(
-              leading: const Icon(
-                Icons.notifications_none_outlined,
-                color: Colors.black,
-                size: 30,
-              ),
-              title: const Text(
-                "Notifications",
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-              ),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.lock_outlined,
-                color: Colors.black,
-                size: 30,
-              ),
-              title: const Text(
-                "Privacy",
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-              ),
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const PrivacyScreen(),
-                ),
+            title: const Text(
+              "Privacy",
+              style: TextStyle(
+                fontSize: 18,
               ),
             ),
-            ListTile(
-              leading: const Icon(
-                Icons.account_circle_outlined,
-                color: Colors.black,
-                size: 30,
-              ),
-              title: const Text(
-                "Account",
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-              ),
-              onTap: () {},
+            onTap: () => router.goNamed(PrivacyScreen.routeName),
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.account_circle_outlined,
+              color: Colors.black,
+              size: 30,
             ),
-            ListTile(
-              leading: const Icon(
-                Icons.support,
-                color: Colors.black,
-                size: 30,
+            title: const Text(
+              "Account",
+              style: TextStyle(
+                fontSize: 18,
               ),
-              title: const Text(
-                "Help",
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-              ),
-              onTap: () {},
             ),
-            ListTile(
-              leading: const Icon(
-                Icons.info_outline,
-                color: Colors.black,
-                size: 30,
-              ),
-              title: const Text(
-                "About",
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-              ),
-              onTap: () {},
+            onTap: () {},
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.support,
+              color: Colors.black,
+              size: 30,
             ),
-            Divider(
-              color: Colors.grey.shade300,
-              thickness: 1,
+            title: const Text(
+              "Help",
+              style: TextStyle(
+                fontSize: 18,
+              ),
             ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () => _showLogOutDialog(context),
-                    child: const Text(
-                      "Log out",
-                      style: TextStyle(color: Colors.blue, fontSize: 18),
-                    ),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.info_outline,
+              color: Colors.black,
+              size: 30,
+            ),
+            title: const Text(
+              "About",
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
+            onTap: () {},
+          ),
+          Divider(
+            color: Colors.grey.shade300,
+            thickness: 1,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  onTap: () => _showLogOutDialog(context),
+                  child: const Text(
+                    "Log out",
+                    style: TextStyle(color: Colors.blue, fontSize: 18),
                   ),
-                  _isLoading ? const CupertinoActivityIndicator() : Container(),
-                ],
-              ),
+                ),
+                _isLoading ? const CupertinoActivityIndicator() : Container(),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
-      bottomNavigationBar: ThreadsBottomNavigationBar(
-          selectedIndex: 4,
-          onTap: (index) => navigateBasedOnIndex(context, index)),
     );
   }
 }

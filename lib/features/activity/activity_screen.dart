@@ -5,6 +5,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ActivityScreen extends StatefulWidget {
+  static const routeURL = "/activity";
+  static const routeName = "activity";
+
   const ActivityScreen({super.key});
 
   @override
