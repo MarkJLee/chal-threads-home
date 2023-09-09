@@ -64,6 +64,10 @@ This project replicates a segment of the Home screen from the Threads applicatio
 -   Upon tapping the "Privacy" ListTile, the user should be navigated to the Privacy view.
 -   Within the Privacy view, utilize the SwitchListTile widget for toggle options.
 
+### Dark Mode
+
+-   The Home, Search, Activity, and Profile screens shall implement a dark mode theme. This shall match the look and feel of dark mode in the platform OS.
+
 ## Demo Link
 
 -   [Threads-home](https://imgur.com/a/iWzhhGD)
