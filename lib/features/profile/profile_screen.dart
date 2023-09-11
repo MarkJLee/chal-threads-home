@@ -109,9 +109,10 @@ class _ProfileScreenState extends State<ProfileScreen>
               ],
             ),
             bottom: PreferredSize(
-              preferredSize: const Size.fromHeight(200),
+              preferredSize:
+                  Size.fromHeight(MediaQuery.of(context).size.height * 0.2),
               child: Padding(
-                padding: const EdgeInsets.all(18.0),
+                padding: const EdgeInsets.symmetric(horizontal: 18),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
