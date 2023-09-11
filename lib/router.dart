@@ -37,21 +37,20 @@ final GoRouter router = GoRouter(
           builder: (context, state) => const ActivityScreen(),
         ),
         GoRoute(
-            path: ProfileScreen.routeURL,
-            name: ProfileScreen.routeName,
-            builder: (context, state) => const ProfileScreen(),
+          path: ProfileScreen.routeURL,
+          name: ProfileScreen.routeName,
+          builder: (context, state) => const ProfileScreen(),
+        ),
+        GoRoute(
+            path: SettingsScreen.routeURL,
+            name: SettingsScreen.routeName,
+            builder: (context, state) => const SettingsScreen(),
             routes: [
               GoRoute(
-                  path: SettingsScreen.routeURL,
-                  name: SettingsScreen.routeName,
-                  builder: (context, state) => const SettingsScreen(),
-                  routes: [
-                    GoRoute(
-                      path: PrivacyScreen.routeURL,
-                      name: PrivacyScreen.routeName,
-                      builder: (context, state) => const PrivacyScreen(),
-                    ),
-                  ]),
+                path: PrivacyScreen.routeURL,
+                name: PrivacyScreen.routeName,
+                builder: (context, state) => const PrivacyScreen(),
+              ),
             ]),
       ],
     ),

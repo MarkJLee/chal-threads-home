@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatefulWidget {
-  static const String routeURL = "settings";
+  static const String routeURL = "/settings";
   static const String routeName = "settings";
   const SettingsScreen({super.key});
 

@@ -27,8 +27,9 @@ class NavigationShell extends StatelessWidget {
     if (location == SearchScreen.routeURL) return 1;
     if (location == ActivityScreen.routeURL) return 3;
     if (location == ProfileScreen.routeURL) return 4;
-    // ProfileScreen과 SettingsScreen 모두 프로필 탭에 해당
+
     if (location.startsWith(ProfileScreen.routeURL)) return 4;
+    if (location.startsWith(SettingsScreen.routeURL)) return 4;
 
     return 0; // 기본값으로 홈 스크린 인덱스 반환
   }
@@ -125,12 +126,16 @@ class NavigationShell extends StatelessWidget {
                   Icons.arrow_back_ios,
                 ),
                 onPressed: () {
-                  router.pop();
+                  isSettings
+                      ? router.goNamed(ProfileScreen.routeName)
+                      : router.pop();
                 },
               ),
               GestureDetector(
                 onTap: () {
-                  router.pop();
+                  isSettings
+                      ? router.goNamed(ProfileScreen.routeName)
+                      : router.pop();
                 },
                 child: Text(
                   "Back",
