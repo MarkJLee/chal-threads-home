@@ -1,4 +1,5 @@
 import 'package:chal_threads_home/features/home/widgets/post_action_buttons_in_bottom_sheet.dart';
+import 'package:chal_threads_home/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -54,9 +55,13 @@ class PostHeaderWidget extends StatelessWidget {
                 right: 0,
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Colors.white, width: 2)),
+                    color: isDarkMode(context) ? Colors.black : Colors.white,
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                        color:
+                            isDarkMode(context) ? Colors.black : Colors.white,
+                        width: 2),
+                  ),
                   child: follow
                       ? Container() // follow
                       : const FaIcon(FontAwesomeIcons.circlePlus, size: 20),

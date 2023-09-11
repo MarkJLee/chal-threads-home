@@ -7,14 +7,16 @@ import 'package:chal_threads_home/features/search/search_screen.dart';
 import 'package:chal_threads_home/features/widgets/modal_helper.dart';
 import 'package:chal_threads_home/features/widgets/threads_bottom_navigation_bar.dart';
 import 'package:chal_threads_home/router.dart';
+import 'package:chal_threads_home/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 class NavigationShell extends StatelessWidget {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final Widget child;
 
-  const NavigationShell({Key? key, required this.child}) : super(key: key);
+  NavigationShell({Key? key, required this.child}) : super(key: key);
 
   int _getCurrentIndex(BuildContext context) {
     final String location = GoRouterState.of(context).uri.toString();
@@ -31,17 +33,24 @@ class NavigationShell extends StatelessWidget {
     return 0; // 기본값으로 홈 스크린 인덱스 반환
   }
 
-  Widget _selectTitleWidget(int index) {
+  Widget _selectTitleWidget(int index, BuildContext context) {
     switch (index) {
       case 0:
-        return SvgPicture.asset('assets/threads.svg', height: 40);
+        return ColorFiltered(
+            colorFilter: ColorFilter.mode(
+              isDarkMode(context) ? Colors.white : Colors.black,
+              BlendMode.srcIn,
+            ),
+            child: SvgPicture.asset(
+              'assets/threads.svg',
+              height: 40,
+            ));
       case 1:
         return const Align(
           alignment: Alignment.centerLeft,
           child: Text(
             "Search",
             style: TextStyle(
-              color: Colors.black,
               fontSize: 30,
               fontWeight: FontWeight.bold,
             ),
@@ -53,7 +62,6 @@ class NavigationShell extends StatelessWidget {
           child: Text(
             "Activity",
             style: TextStyle(
-              color: Colors.black,
               fontSize: 30,
               fontWeight: FontWeight.bold,
             ),
@@ -94,19 +102,17 @@ class NavigationShell extends StatelessWidget {
     if (index != 4) {
       return AppBar(
         toolbarHeight: null,
-        backgroundColor: Colors.white,
         elevation: 0,
-        title: _selectTitleWidget(index),
+        title: _selectTitleWidget(index, context),
       );
     } else if (isSettings || isPrivacy) {
       return AppBar(
-        backgroundColor: Colors.white,
         elevation: 0.2,
         title: Text(
           isSettings ? "Settings" : "Privacy",
           style: const TextStyle(
-            color: Colors.black,
             fontWeight: FontWeight.bold,
+            fontSize: 18,
           ),
         ),
         leadingWidth: 100,
@@ -117,7 +123,6 @@ class NavigationShell extends StatelessWidget {
               IconButton(
                 icon: const Icon(
                   Icons.arrow_back_ios,
-                  color: Colors.black,
                 ),
                 onPressed: () {
                   router.pop();
@@ -127,10 +132,10 @@ class NavigationShell extends StatelessWidget {
                 onTap: () {
                   router.pop();
                 },
-                child: const Text(
+                child: Text(
                   "Back",
                   style: TextStyle(
-                    color: Colors.black,
+                    color: isDarkMode(context) ? Colors.white : Colors.black,
                     fontSize: 20,
                   ),
                 ),
@@ -147,6 +152,7 @@ class NavigationShell extends StatelessWidget {
   Widget build(BuildContext context) {
     final index = _getCurrentIndex(context);
     return Scaffold(
+      key: _scaffoldKey,
       appBar: _selectedAppBar(index, context),
       body: child,
       bottomNavigationBar: ThreadsBottomNavigationBar(

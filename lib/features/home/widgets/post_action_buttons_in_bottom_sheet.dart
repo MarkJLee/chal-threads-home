@@ -1,4 +1,5 @@
 import 'package:chal_threads_home/features/home/widgets/post_report_bottom_sheet_widget.dart';
+import 'package:chal_threads_home/utils.dart';
 import 'package:flutter/material.dart';
 
 class PostActionButtonsInBottomSheetWidget extends StatelessWidget {
@@ -36,7 +37,7 @@ class PostActionButtonsInBottomSheetWidget extends StatelessWidget {
             width: MediaQuery.of(context).size.width * 0.8,
             height: MediaQuery.of(context).size.height * 0.1,
             decoration: BoxDecoration(
-              color: Colors.grey[200],
+              color: isDarkMode(context) ? Colors.grey[800] : Colors.grey[200],
               borderRadius: const BorderRadius.all(
                 Radius.circular(20),
               ),
@@ -53,7 +54,7 @@ class PostActionButtonsInBottomSheetWidget extends StatelessWidget {
                         fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                 ),
-                Divider(color: Colors.grey[300], thickness: 1),
+                Divider(color: Colors.grey[400], thickness: 1),
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0, bottom: 10),
                   child: Text(
@@ -72,7 +73,7 @@ class PostActionButtonsInBottomSheetWidget extends StatelessWidget {
             width: MediaQuery.of(context).size.width * 0.8,
             height: MediaQuery.of(context).size.height * 0.1,
             decoration: BoxDecoration(
-              color: Colors.grey[200],
+              color: isDarkMode(context) ? Colors.grey[800] : Colors.grey[200],
               borderRadius: const BorderRadius.all(
                 Radius.circular(20),
               ),
@@ -88,11 +89,15 @@ class PostActionButtonsInBottomSheetWidget extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      color: follow ? Colors.black : Colors.red,
+                      color: follow
+                          ? isDarkMode(context)
+                              ? Colors.grey[200]
+                              : Colors.black
+                          : Colors.red,
                     ),
                   ),
                 ),
-                Divider(color: Colors.grey[300], thickness: 1),
+                Divider(color: Colors.grey[400], thickness: 1),
                 GestureDetector(
                   onTap: () {
                     Navigator.pop(context);

@@ -3,6 +3,7 @@ import 'package:chal_threads_home/features/home/widgets/post_header_widget.dart'
 import 'package:chal_threads_home/features/home/widgets/post_media_widget.dart';
 import 'package:chal_threads_home/features/profile/settings_screen.dart';
 import 'package:chal_threads_home/router.dart';
+import 'package:chal_threads_home/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -69,21 +70,22 @@ class _ProfileScreenState extends State<ProfileScreen>
       slivers: [
         SliverAppBar(
           floating: false,
-          backgroundColor: Colors.white,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.black,
+                  color: isDarkMode(context) ? Colors.white : Colors.black,
                   borderRadius: BorderRadius.circular(25),
-                  border: Border.all(color: Colors.black, width: 2),
+                  border: Border.all(
+                      color: isDarkMode(context) ? Colors.white : Colors.black,
+                      width: 2),
                 ),
                 alignment: Alignment.center,
-                child: const FaIcon(
+                child: FaIcon(
                   FontAwesomeIcons.globe,
+                  color: isDarkMode(context) ? Colors.black : Colors.white,
                   size: 22,
-                  color: Colors.white,
                 ),
               ),
               Row(
@@ -91,7 +93,6 @@ class _ProfileScreenState extends State<ProfileScreen>
                   const FaIcon(
                     FontAwesomeIcons.instagram,
                     size: 28,
-                    color: Colors.black,
                   ),
                   const SizedBox(width: 20),
                   GestureDetector(
@@ -99,7 +100,6 @@ class _ProfileScreenState extends State<ProfileScreen>
                     child: const FaIcon(
                       FontAwesomeIcons.bars,
                       size: 24,
-                      color: Colors.black,
                     ),
                   ),
                 ],
@@ -235,11 +235,13 @@ class _ProfileScreenState extends State<ProfileScreen>
                           minSize: 0, // 기본 44로 설정되어 있음
                           padding: EdgeInsets.zero,
                           onPressed: () {},
-                          child: const Text(
+                          child: Text(
                             "Edit profile",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                              color: isDarkMode(context)
+                                  ? Colors.white
+                                  : Colors.black,
                               fontSize: 16,
                             ),
                           ),
@@ -261,11 +263,13 @@ class _ProfileScreenState extends State<ProfileScreen>
                           minSize: 0, // 기본 44로 설정되어 있음
                           padding: EdgeInsets.zero,
                           onPressed: () {},
-                          child: const Text(
+                          child: Text(
                             "Share profile",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                              color: isDarkMode(context)
+                                  ? Colors.white
+                                  : Colors.black,
                               fontSize: 16,
                             ),
                           ),
@@ -282,7 +286,8 @@ class _ProfileScreenState extends State<ProfileScreen>
           pinned: true,
           delegate: _SliverHeaderDelegate(
             child: Material(
-              color: Colors.white, // TabBar background color
+              // color: Colors.white, // TabBar background color
+              color: isDarkMode(context) ? Colors.black : Colors.white,
               child: Center(
                 child: TabBar(
                   controller: _tabController,
@@ -296,9 +301,9 @@ class _ProfileScreenState extends State<ProfileScreen>
                     fontWeight: FontWeight.w600,
                     fontSize: 16,
                   ),
-                  indicatorColor: Colors.black,
+                  indicatorColor:
+                      isDarkMode(context) ? Colors.white : Colors.black,
                   unselectedLabelColor: Colors.grey.shade500,
-                  labelColor: Colors.black,
                   tabs: [
                     for (var tab in tabs)
                       Tab(

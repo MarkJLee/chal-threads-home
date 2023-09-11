@@ -1,4 +1,5 @@
 import 'package:chal_threads_home/features/activity/widgets/activity_data.dart';
+import 'package:chal_threads_home/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -178,8 +179,8 @@ class _ActivityScreenState extends State<ActivityScreen> {
       length: _activityCategories.length, // Number of tabs
       child: CupertinoPageScaffold(
         navigationBar: CupertinoNavigationBar(
+          backgroundColor: isDarkMode(context) ? Colors.black : Colors.white,
           border: null,
-          backgroundColor: Colors.white,
           middle: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
@@ -194,8 +195,13 @@ class _ActivityScreenState extends State<ActivityScreen> {
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey.shade400),
                       borderRadius: BorderRadius.circular(8),
-                      color:
-                          _currentIndex == index ? Colors.black : Colors.white,
+                      color: isDarkMode(context)
+                          ? (_currentIndex == index
+                              ? Colors.white
+                              : Colors.black)
+                          : (_currentIndex == index
+                              ? Colors.black
+                              : Colors.white),
                     ),
                     child: CupertinoButton(
                       padding: const EdgeInsets.symmetric(
@@ -203,9 +209,13 @@ class _ActivityScreenState extends State<ActivityScreen> {
                       child: Text(
                         _activityCategories[index]["name"]!,
                         style: TextStyle(
-                            color: _currentIndex == index
-                                ? Colors.white
-                                : Colors.black,
+                            color: isDarkMode(context)
+                                ? (_currentIndex == index
+                                    ? Colors.black
+                                    : Colors.white)
+                                : (_currentIndex == index
+                                    ? Colors.white
+                                    : Colors.black),
                             fontWeight: FontWeight.bold),
                       ),
                       onPressed: () {
@@ -274,18 +284,20 @@ class _ActivityScreenState extends State<ActivityScreen> {
                 ),
                 trailing: filteredActivities[index].category == 'follow'
                     ? Container(
+                        height: 30,
                         decoration: BoxDecoration(
                           border: Border.all(color: Colors.grey),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: SizedBox(
-                          height: 30,
                           child: CupertinoButton(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 25,
                               vertical: 5,
                             ),
-                            color: Colors.white,
+                            color: isDarkMode(context)
+                                ? Colors.black
+                                : Colors.white,
                             onPressed: () {
                               setState(() {
                                 filteredActivities[index].follow =
@@ -300,7 +312,9 @@ class _ActivityScreenState extends State<ActivityScreen> {
                                 fontSize: 15,
                                 color: filteredActivities[index].follow
                                     ? Colors.grey
-                                    : Colors.black,
+                                    : isDarkMode(context)
+                                        ? Colors.white
+                                        : Colors.black,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),

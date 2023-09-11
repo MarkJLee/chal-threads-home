@@ -1,4 +1,5 @@
 import 'package:chal_threads_home/features/search/widgets/users_data.dart';
+import 'package:chal_threads_home/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -104,7 +105,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         horizontal: 25,
                         vertical: 5,
                       ),
-                      color: Colors.white,
+                      color: isDarkMode(context) ? Colors.black : Colors.white,
                       onPressed: () {
                         setState(() {
                           filteredUsers[index].follow =
@@ -116,7 +117,9 @@ class _SearchScreenState extends State<SearchScreen> {
                         style: TextStyle(
                           fontSize: 15,
                           color: !filteredUsers[index].follow
-                              ? Colors.black
+                              ? isDarkMode(context)
+                                  ? Colors.white
+                                  : Colors.black
                               : Colors.grey,
                           fontWeight: FontWeight.bold,
                         ),

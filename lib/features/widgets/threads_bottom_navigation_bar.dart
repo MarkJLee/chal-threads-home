@@ -17,8 +17,6 @@ class ThreadsBottomNavigationBar extends StatelessWidget {
       padding: const EdgeInsets.only(top: 8.0),
       child: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        fixedColor: Colors.black,
-        unselectedItemColor: Colors.grey,
         elevation: 0,
         currentIndex: currentIndex,
         onTap: (int idx) => onItemTapped(idx, context),

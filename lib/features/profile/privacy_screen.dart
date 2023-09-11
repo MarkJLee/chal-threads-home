@@ -17,13 +17,11 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
       child: Column(
         children: [
           ListTile(
             leading: const Icon(
               Icons.lock_outline,
-              color: Colors.black,
               size: 30,
             ),
             title: const Text(
@@ -49,7 +47,6 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
           ListTile(
             leading: const Icon(
               Icons.alternate_email,
-              color: Colors.black,
               size: 30,
             ),
             title: const Text(
@@ -76,7 +73,6 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
           ListTile(
             leading: const Icon(
               Icons.notifications_off_outlined,
-              color: Colors.black,
               size: 30,
             ),
             title: const Text(
@@ -98,7 +94,6 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
           ListTile(
             leading: const Icon(
               Icons.visibility_off_outlined,
-              color: Colors.black,
               size: 30,
             ),
             title: const Text(
@@ -120,7 +115,6 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
           ListTile(
             leading: const Icon(
               Icons.people_outline,
-              color: Colors.black,
               size: 30,
             ),
             title: const Text(
@@ -166,7 +160,6 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
           const ListTile(
             leading: FaIcon(
               FontAwesomeIcons.circleXmark,
-              color: Colors.black,
               size: 30,
             ),
             title: Text(
@@ -180,7 +173,6 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
           const ListTile(
             leading: FaIcon(
               FontAwesomeIcons.heartCircleXmark,
-              color: Colors.black,
               size: 30,
             ),
             title: Text(
