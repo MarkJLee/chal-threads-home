@@ -68,6 +68,16 @@ This project replicates a segment of the Home screen from the Threads applicatio
 
 -   The Home, Search, Activity, and Profile screens shall implement a dark mode theme. This shall match the look and feel of dark mode in the platform OS.
 
+### Router (use GoRouter)
+
+-   Your app's navigation should be implemented using URL-based routing, allowing direct access through specific URLs.
+-   /: Home Screen
+-   /search: Search Screen
+-   /activity: Activity Screen
+-   /profile: Profile Screen
+-   /settings: Settings Screen
+-   /settings/privacy: Privacy Screen
+
 ## Demo Link
 
 -   [Threads-home](https://imgur.com/a/iWzhhGD)
