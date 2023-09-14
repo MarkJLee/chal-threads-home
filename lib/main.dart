@@ -31,6 +31,7 @@ class ThreadsApp extends StatelessWidget {
       title: "Threads Clone",
       // themeMode: ThemeMode.system,
       themeMode: darkModeVM.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+
       theme: ThemeData(
         listTileTheme: const ListTileThemeData(iconColor: Colors.black),
         brightness: Brightness.light,
@@ -63,8 +64,13 @@ class ThreadsApp extends StatelessWidget {
         ),
       ),
       darkTheme: ThemeData(
+        listTileTheme: const ListTileThemeData(iconColor: Colors.white),
         brightness: Brightness.dark,
         scaffoldBackgroundColor: Colors.black,
+        iconTheme: const IconThemeData(
+          color: Colors.white,
+          opacity: 1,
+        ),
         tabBarTheme: const TabBarTheme(
           labelColor: Colors.white,
           unselectedLabelColor: Colors.grey,
