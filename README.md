@@ -78,6 +78,12 @@ This project replicates a segment of the Home screen from the Threads applicatio
 -   /settings: Settings Screen
 -   /settings/privacy: Privacy Screen
 
+### MVVM + Provider + Dark Mode
+
+-   Building on the efforts from the prior tasks and utilizing Provider with the MVVM pattern, implement a dark mode toggle on the Settings screen.
+-   Employ ChangeNotifier and ChangeNotifierProvider to facilitate the implementation of the dark mode toggle.
+-   Demonstrate the functionality of the dark mode toggle in the video submission.
+
 ## Demo Link
 
 -   [Threads-home](https://imgur.com/a/iWzhhGD)
