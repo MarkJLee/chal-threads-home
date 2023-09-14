@@ -1,4 +1,4 @@
-import 'package:chal_threads_home/features/profile/privacy_screen.dart';
+import 'package:chal_threads_home/features/profile/views/privacy_screen.dart';
 import 'package:chal_threads_home/router.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

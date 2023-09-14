@@ -1,8 +1,8 @@
 import 'package:chal_threads_home/features/activity/activity_screen.dart';
 import 'package:chal_threads_home/features/home/home_screen.dart';
-import 'package:chal_threads_home/features/profile/privacy_screen.dart';
-import 'package:chal_threads_home/features/profile/profile_screen.dart';
-import 'package:chal_threads_home/features/profile/settings_screen.dart';
+import 'package:chal_threads_home/features/profile/views/privacy_screen.dart';
+import 'package:chal_threads_home/features/profile/views/profile_screen.dart';
+import 'package:chal_threads_home/features/profile/views/settings_screen.dart';
 import 'package:chal_threads_home/features/search/search_screen.dart';
 import 'package:chal_threads_home/navigation_shell.dart';
 import 'package:flutter/material.dart';

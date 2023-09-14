@@ -1,7 +1,7 @@
 import 'package:chal_threads_home/features/home/widgets/post_data.dart';
 import 'package:chal_threads_home/features/home/widgets/post_header_widget.dart';
 import 'package:chal_threads_home/features/home/widgets/post_media_widget.dart';
-import 'package:chal_threads_home/features/profile/settings_screen.dart';
+import 'package:chal_threads_home/features/profile/views/settings_screen.dart';
 import 'package:chal_threads_home/router.dart';
 import 'package:chal_threads_home/utils.dart';
 import 'package:flutter/cupertino.dart';

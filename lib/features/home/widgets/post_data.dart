@@ -1,6 +1,6 @@
 // post_data.dart
 
-import 'package:chal_threads_home/features/profile/widgets/repost_data.dart';
+import 'package:chal_threads_home/features/profile/views/widgets/repost_data.dart';
 
 class Post {
   final bool follow;
