@@ -1,7 +1,9 @@
+import 'package:chal_threads_home/features/profile/view_models/dark_mode_mv.dart';
 import 'package:chal_threads_home/features/profile/views/privacy_screen.dart';
 import 'package:chal_threads_home/router.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SettingsScreen extends StatefulWidget {
   static const String routeURL = "/settings";
@@ -70,6 +72,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        ListTile(
+          leading: const Icon(
+            Icons.dark_mode_outlined,
+            size: 30,
+          ),
+          title: const Text(
+            "Dark mode",
+            style: TextStyle(
+              fontSize: 18,
+            ),
+          ),
+          trailing: CupertinoSwitch(
+            value: context.watch<DarkModeViewModel>().isDarkMode,
+            onChanged: (value) =>
+                context.read<DarkModeViewModel>().setDarkMode(value),
+          ),
+          onTap: () {},
+        ),
         ListTile(
           leading: const Icon(
             Icons.person_add_outlined,

@@ -1,8 +1,21 @@
+import 'package:chal_threads_home/features/profile/repos/dark_mode_repo.dart';
+import 'package:chal_threads_home/features/profile/view_models/dark_mode_mv.dart';
 import 'package:chal_threads_home/router.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(const ThreadsApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final preferences = await SharedPreferences.getInstance();
+  final repository = DarkModeRepository(preferences);
+
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(
+      create: (context) => DarkModeViewModel(repository),
+    ),
+  ], child: const ThreadsApp()));
 }
 
 class ThreadsApp extends StatelessWidget {
@@ -11,10 +24,13 @@ class ThreadsApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final darkModeVM = Provider.of<DarkModeViewModel>(context, listen: true);
+
     return MaterialApp.router(
       routerConfig: router,
       title: "Threads Clone",
-      themeMode: ThemeMode.system,
+      // themeMode: ThemeMode.system,
+      themeMode: darkModeVM.isDarkMode ? ThemeMode.dark : ThemeMode.light,
       theme: ThemeData(
         listTileTheme: const ListTileThemeData(iconColor: Colors.black),
         brightness: Brightness.light,
