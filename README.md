@@ -84,6 +84,10 @@ This project replicates a segment of the Home screen from the Threads applicatio
 -   Employ ChangeNotifier and ChangeNotifierProvider to facilitate the implementation of the dark mode toggle.
 -   Demonstrate the functionality of the dark mode toggle in the video submission.
 
+### RiverPod
+
+-   Migrate the dark mode toggle implementation from using MVVM with Provider to MVVM with Riverpod.
+
 ## Demo Link
 
 -   [Threads-home](https://imgur.com/a/iWzhhGD)

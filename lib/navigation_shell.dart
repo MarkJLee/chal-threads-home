@@ -1,5 +1,6 @@
 import 'package:chal_threads_home/features/activity/activity_screen.dart';
 import 'package:chal_threads_home/features/home/home_screen.dart';
+import 'package:chal_threads_home/features/profile/view_models/dark_mode_mv.dart';
 import 'package:chal_threads_home/features/profile/views/privacy_screen.dart';
 import 'package:chal_threads_home/features/profile/views/profile_screen.dart';
 import 'package:chal_threads_home/features/profile/views/settings_screen.dart';
@@ -7,12 +8,12 @@ import 'package:chal_threads_home/features/search/search_screen.dart';
 import 'package:chal_threads_home/features/widgets/modal_helper.dart';
 import 'package:chal_threads_home/features/widgets/threads_bottom_navigation_bar.dart';
 import 'package:chal_threads_home/router.dart';
-import 'package:chal_threads_home/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
-class NavigationShell extends StatelessWidget {
+class NavigationShell extends ConsumerWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final Widget child;
 
@@ -34,12 +35,12 @@ class NavigationShell extends StatelessWidget {
     return 0; // 기본값으로 홈 스크린 인덱스 반환
   }
 
-  Widget _selectTitleWidget(int index, BuildContext context) {
+  Widget _selectTitleWidget(int index, BuildContext context, bool isDarkMode) {
     switch (index) {
       case 0:
         return ColorFiltered(
             colorFilter: ColorFilter.mode(
-              isDarkMode(context) ? Colors.white : Colors.black,
+              isDarkMode ? Colors.white : Colors.black,
               BlendMode.srcIn,
             ),
             child: SvgPicture.asset(
@@ -96,15 +97,16 @@ class NavigationShell extends StatelessWidget {
     }
   }
 
-  PreferredSizeWidget? _selectedAppBar(index, context) {
+  PreferredSizeWidget? _selectedAppBar(index, context, bool isDarkMode) {
     final String location = GoRouterState.of(context).uri.toString();
     final bool isSettings = location.endsWith(SettingsScreen.routeURL);
     final bool isPrivacy = location.endsWith(PrivacyScreen.routeURL);
+
     if (index != 4) {
       return AppBar(
         toolbarHeight: null,
         elevation: 0,
-        title: _selectTitleWidget(index, context),
+        title: _selectTitleWidget(index, context, isDarkMode),
       );
     } else if (isSettings || isPrivacy) {
       return AppBar(
@@ -140,7 +142,7 @@ class NavigationShell extends StatelessWidget {
                 child: Text(
                   "Back",
                   style: TextStyle(
-                    color: isDarkMode(context) ? Colors.white : Colors.black,
+                    color: isDarkMode ? Colors.white : Colors.black,
                     fontSize: 20,
                   ),
                 ),
@@ -154,11 +156,12 @@ class NavigationShell extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isDarkMode = ref.watch(darkModeProvider).isDarkMode;
     final index = _getCurrentIndex(context);
     return Scaffold(
       key: _scaffoldKey,
-      appBar: _selectedAppBar(index, context),
+      appBar: _selectedAppBar(index, context, isDarkMode),
       body: child,
       bottomNavigationBar: ThreadsBottomNavigationBar(
         currentIndex: index,

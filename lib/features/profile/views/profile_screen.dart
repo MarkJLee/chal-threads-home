@@ -1,24 +1,25 @@
 import 'package:chal_threads_home/features/home/widgets/post_data.dart';
 import 'package:chal_threads_home/features/home/widgets/post_header_widget.dart';
 import 'package:chal_threads_home/features/home/widgets/post_media_widget.dart';
+import 'package:chal_threads_home/features/profile/view_models/dark_mode_mv.dart';
 import 'package:chal_threads_home/features/profile/views/settings_screen.dart';
 import 'package:chal_threads_home/router.dart';
-import 'package:chal_threads_home/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class ProfileScreen extends StatefulWidget {
+class ProfileScreen extends ConsumerStatefulWidget {
   static const routeURL = "/profile";
   static const routeName = "profile";
 
   const ProfileScreen({super.key});
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  ProfileScreenState createState() => ProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen>
+class ProfileScreenState extends ConsumerState<ProfileScreen>
     with SingleTickerProviderStateMixin {
   final tabs = ["Threads", "Replies"];
 
@@ -66,6 +67,8 @@ class _ProfileScreenState extends State<ProfileScreen>
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = ref.watch(darkModeProvider).isDarkMode;
+
     return SafeArea(
       child: CustomScrollView(
         slivers: [
@@ -76,17 +79,16 @@ class _ProfileScreenState extends State<ProfileScreen>
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    color: isDarkMode(context) ? Colors.white : Colors.black,
+                    color: isDarkMode ? Colors.white : Colors.black,
                     borderRadius: BorderRadius.circular(25),
                     border: Border.all(
-                        color:
-                            isDarkMode(context) ? Colors.white : Colors.black,
+                        color: isDarkMode ? Colors.white : Colors.black,
                         width: 2),
                   ),
                   alignment: Alignment.center,
                   child: FaIcon(
                     FontAwesomeIcons.globe,
-                    color: isDarkMode(context) ? Colors.black : Colors.white,
+                    color: isDarkMode ? Colors.black : Colors.white,
                     size: 22,
                   ),
                 ),
@@ -245,9 +247,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                               "Edit profile",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: isDarkMode(context)
-                                    ? Colors.white
-                                    : Colors.black,
+                                color: isDarkMode ? Colors.white : Colors.black,
                                 fontSize: 16,
                               ),
                             ),
@@ -274,9 +274,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                               "Share profile",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: isDarkMode(context)
-                                    ? Colors.white
-                                    : Colors.black,
+                                color: isDarkMode ? Colors.white : Colors.black,
                                 fontSize: 16,
                               ),
                             ),
@@ -294,7 +292,7 @@ class _ProfileScreenState extends State<ProfileScreen>
             delegate: _SliverHeaderDelegate(
               child: Material(
                 // color: Colors.white, // TabBar background color
-                color: isDarkMode(context) ? Colors.black : Colors.white,
+                color: isDarkMode ? Colors.black : Colors.white,
                 child: Center(
                   child: TabBar(
                     controller: _tabController,
@@ -308,8 +306,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                       fontWeight: FontWeight.w600,
                       fontSize: 16,
                     ),
-                    indicatorColor:
-                        isDarkMode(context) ? Colors.white : Colors.black,
+                    indicatorColor: isDarkMode ? Colors.white : Colors.black,
                     unselectedLabelColor: Colors.grey.shade500,
                     tabs: [
                       for (var tab in tabs)

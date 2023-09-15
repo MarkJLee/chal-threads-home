@@ -1,18 +1,19 @@
 import 'package:chal_threads_home/features/activity/widgets/activity_data.dart';
-import 'package:chal_threads_home/utils.dart';
+import 'package:chal_threads_home/features/profile/view_models/dark_mode_mv.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class ActivityScreen extends StatefulWidget {
+class ActivityScreen extends ConsumerStatefulWidget {
   static const routeURL = "/activity";
   static const routeName = "activity";
 
   const ActivityScreen({super.key});
 
   @override
-  State<ActivityScreen> createState() => _ActivityScreenState();
+  ActivityScreenState createState() => ActivityScreenState();
 }
 
 final List<Map<String, String>> _activityCategories = [
@@ -26,7 +27,7 @@ final List<Map<String, String>> _activityCategories = [
 ];
 int _currentIndex = 0;
 
-class _ActivityScreenState extends State<ActivityScreen> {
+class ActivityScreenState extends ConsumerState<ActivityScreen> {
   Widget _activitySubtitle(int index, List filteredData) {
     if (filteredData[index].category == "follow") {
       return const Text(
@@ -166,6 +167,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = ref.watch(darkModeProvider).isDarkMode;
     // 현재 선택된 카테고리를 기반으로 데이터를 필터링
     List filteredActivities =
         _activityCategories[_currentIndex]["value"] == "all"
@@ -179,7 +181,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
       length: _activityCategories.length, // Number of tabs
       child: CupertinoPageScaffold(
         navigationBar: CupertinoNavigationBar(
-          backgroundColor: isDarkMode(context) ? Colors.black : Colors.white,
+          backgroundColor: isDarkMode ? Colors.black : Colors.white,
           border: null,
           middle: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
@@ -195,7 +197,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey.shade400),
                       borderRadius: BorderRadius.circular(8),
-                      color: isDarkMode(context)
+                      color: isDarkMode
                           ? (_currentIndex == index
                               ? Colors.white
                               : Colors.black)
@@ -209,7 +211,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
                       child: Text(
                         _activityCategories[index]["name"]!,
                         style: TextStyle(
-                            color: isDarkMode(context)
+                            color: isDarkMode
                                 ? (_currentIndex == index
                                     ? Colors.black
                                     : Colors.white)
@@ -295,9 +297,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
                               horizontal: 25,
                               vertical: 5,
                             ),
-                            color: isDarkMode(context)
-                                ? Colors.black
-                                : Colors.white,
+                            color: isDarkMode ? Colors.black : Colors.white,
                             onPressed: () {
                               setState(() {
                                 filteredActivities[index].follow =
@@ -312,7 +312,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
                                 fontSize: 15,
                                 color: filteredActivities[index].follow
                                     ? Colors.grey
-                                    : isDarkMode(context)
+                                    : isDarkMode
                                         ? Colors.white
                                         : Colors.black,
                                 fontWeight: FontWeight.bold,

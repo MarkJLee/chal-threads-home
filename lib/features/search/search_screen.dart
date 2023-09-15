@@ -1,19 +1,20 @@
+import 'package:chal_threads_home/features/profile/view_models/dark_mode_mv.dart';
 import 'package:chal_threads_home/features/search/widgets/users_data.dart';
-import 'package:chal_threads_home/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class SearchScreen extends StatefulWidget {
+class SearchScreen extends ConsumerStatefulWidget {
   static String routeURL = "/search";
   static String routeName = "search";
   const SearchScreen({super.key});
 
   @override
-  State<SearchScreen> createState() => _SearchScreenState();
+  SearchScreenState createState() => SearchScreenState();
 }
 
-class _SearchScreenState extends State<SearchScreen> {
+class SearchScreenState extends ConsumerState<SearchScreen> {
   String _searchText = "";
 
   String _formatNumber(int n) {
@@ -28,6 +29,8 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = ref.watch(darkModeProvider).isDarkMode;
+
     // 검색어를 기반으로 필터링된 사용자 목록
     List filteredUsers = users_data.where((user) {
       return user.account.toLowerCase().startsWith(_searchText.toLowerCase());
@@ -105,7 +108,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         horizontal: 25,
                         vertical: 5,
                       ),
-                      color: isDarkMode(context) ? Colors.black : Colors.white,
+                      color: isDarkMode ? Colors.black : Colors.white,
                       onPressed: () {
                         setState(() {
                           filteredUsers[index].follow =
@@ -117,7 +120,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         style: TextStyle(
                           fontSize: 15,
                           color: !filteredUsers[index].follow
-                              ? isDarkMode(context)
+                              ? isDarkMode
                                   ? Colors.white
                                   : Colors.black
                               : Colors.grey,

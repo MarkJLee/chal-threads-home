@@ -1,20 +1,22 @@
 import 'package:chal_threads_home/features/profile/models/dark_mode_model.dart';
 import 'package:chal_threads_home/features/profile/repos/dark_mode_repo.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DarkModeViewModel extends ChangeNotifier {
+class DarkModeViewModel extends Notifier<DarkModeModel> {
   final DarkModeRepository _darkModeRepository;
-
-  late final DarkModeModel _darkModeModel =
-      DarkModeModel(isDarkMode: _darkModeRepository.isDarkMode());
 
   DarkModeViewModel(this._darkModeRepository);
 
-  bool get isDarkMode => _darkModeModel.isDarkMode;
-
   void setDarkMode(bool value) {
-    _darkModeModel.isDarkMode = value;
     _darkModeRepository.setDarkMode(value);
-    notifyListeners();
+    state = DarkModeModel(isDarkMode: value);
+  }
+
+  @override
+  DarkModeModel build() {
+    return DarkModeModel(isDarkMode: _darkModeRepository.isDarkMode());
   }
 }
+
+final darkModeProvider = NotifierProvider<DarkModeViewModel, DarkModeModel>(
+    () => throw UnimplementedError());

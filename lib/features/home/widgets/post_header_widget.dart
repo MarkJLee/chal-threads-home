@@ -1,9 +1,10 @@
 import 'package:chal_threads_home/features/home/widgets/post_action_buttons_in_bottom_sheet.dart';
-import 'package:chal_threads_home/utils.dart';
+import 'package:chal_threads_home/features/profile/view_models/dark_mode_mv.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class PostHeaderWidget extends StatelessWidget {
+class PostHeaderWidget extends ConsumerWidget {
   final String account;
   final String postText;
   final String postTime;
@@ -37,7 +38,9 @@ class PostHeaderWidget extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isDarkMode = ref.watch(darkModeProvider).isDarkMode;
+
     return Row(
       children: [
         Padding(
@@ -55,11 +58,10 @@ class PostHeaderWidget extends StatelessWidget {
                 right: 0,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: isDarkMode(context) ? Colors.black : Colors.white,
+                    color: isDarkMode ? Colors.black : Colors.white,
                     shape: BoxShape.circle,
                     border: Border.all(
-                        color:
-                            isDarkMode(context) ? Colors.black : Colors.white,
+                        color: isDarkMode ? Colors.black : Colors.white,
                         width: 2),
                   ),
                   child: follow

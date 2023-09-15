@@ -3,73 +3,62 @@ import 'package:chal_threads_home/features/profile/views/privacy_screen.dart';
 import 'package:chal_threads_home/router.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SettingsScreen extends StatefulWidget {
+// 임시
+final isLoadingProvider = StateProvider<bool>((ref) => false);
+
+class SettingsScreen extends ConsumerWidget {
   static const String routeURL = "/settings";
   static const String routeName = "settings";
   const SettingsScreen({super.key});
 
   @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
-}
-
-class _SettingsScreenState extends State<SettingsScreen> {
-  bool _isLoading = false;
-
-  void _showLogOutDialog(BuildContext context) async {
-    setState(() {
-      _isLoading = true;
-    });
-
-    await Future.delayed(const Duration(seconds: 1));
-
-    setState(() {
-      _isLoading = false;
-    });
-
-    if (mounted) {
-      _displayLogOutDialog(context);
-    }
-  }
-
-  void _displayLogOutDialog(BuildContext context) {
-    showCupertinoDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return CupertinoAlertDialog(
-          title: const Text('Log out?'),
-          content: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(12.0),
-              child: Image.asset(
-                "assets/8.jpg",
-                fit: BoxFit.cover,
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    // isLoading, _displayLogOutDialog 함수는 임시로 추가 (다음에 수정)
+    final isLoading = ref.watch(isLoadingProvider);
+    void _displayLogOutDialog(BuildContext context) {
+      showCupertinoDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CupertinoAlertDialog(
+            title: const Text('Log out?'),
+            content: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12.0),
+                child: Image.asset(
+                  "assets/8.jpg",
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-          actions: <Widget>[
-            CupertinoDialogAction(
-              child: const Text('Cancel'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            CupertinoDialogAction(
-              child: const Text('OK'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
+            actions: <Widget>[
+              CupertinoDialogAction(
+                child: const Text('Cancel'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              CupertinoDialogAction(
+                child: const Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
 
-  @override
-  Widget build(BuildContext context) {
+    void _showLogOutDialog(BuildContext context) async {
+      await Future.delayed(const Duration(seconds: 1));
+
+      _displayLogOutDialog(context);
+    }
+
     return Column(
       children: [
         ListTile(
@@ -84,9 +73,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           ),
           trailing: CupertinoSwitch(
-            value: context.watch<DarkModeViewModel>().isDarkMode,
+            value: ref.watch(darkModeProvider).isDarkMode,
             onChanged: (value) =>
-                context.read<DarkModeViewModel>().setDarkMode(value),
+                ref.read(darkModeProvider.notifier).setDarkMode(value),
           ),
           onTap: () {},
         ),
@@ -184,7 +173,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   style: TextStyle(color: Colors.blue, fontSize: 18),
                 ),
               ),
-              _isLoading ? const CupertinoActivityIndicator() : Container(),
+              isLoading ? const CupertinoActivityIndicator() : Container(),
             ],
           ),
         ),

@@ -2,7 +2,7 @@ import 'package:chal_threads_home/features/profile/repos/dark_mode_repo.dart';
 import 'package:chal_threads_home/features/profile/view_models/dark_mode_mv.dart';
 import 'package:chal_threads_home/router.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
@@ -11,26 +11,29 @@ Future<void> main() async {
   final preferences = await SharedPreferences.getInstance();
   final repository = DarkModeRepository(preferences);
 
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(
-      create: (context) => DarkModeViewModel(repository),
+  runApp(
+    ProviderScope(
+      overrides: [
+        darkModeProvider.overrideWith(() => DarkModeViewModel(repository))
+      ],
+      child: const ThreadsApp(),
     ),
-  ], child: const ThreadsApp()));
+  );
 }
 
-class ThreadsApp extends StatelessWidget {
+class ThreadsApp extends ConsumerWidget {
   const ThreadsApp({super.key});
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    final darkModeVM = Provider.of<DarkModeViewModel>(context, listen: true);
-
+  Widget build(BuildContext context, WidgetRef ref) {
+    // final darkModeVM = Provider.of<DarkModeViewModel>(context, listen: true);
+    final isDarkMode = ref.watch(darkModeProvider).isDarkMode;
     return MaterialApp.router(
       routerConfig: router,
       title: "Threads Clone",
       // themeMode: ThemeMode.system,
-      themeMode: darkModeVM.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+      themeMode: isDarkMode ? ThemeMode.dark : ThemeMode.light,
 
       theme: ThemeData(
         listTileTheme: const ListTileThemeData(iconColor: Colors.black),

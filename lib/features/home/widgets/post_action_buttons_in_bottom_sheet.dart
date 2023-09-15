@@ -1,8 +1,9 @@
 import 'package:chal_threads_home/features/home/widgets/post_report_bottom_sheet_widget.dart';
-import 'package:chal_threads_home/utils.dart';
+import 'package:chal_threads_home/features/profile/view_models/dark_mode_mv.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class PostActionButtonsInBottomSheetWidget extends StatelessWidget {
+class PostActionButtonsInBottomSheetWidget extends ConsumerWidget {
   final bool follow;
   const PostActionButtonsInBottomSheetWidget({
     super.key,
@@ -25,7 +26,8 @@ class PostActionButtonsInBottomSheetWidget extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isDarkMode = ref.watch(darkModeProvider).isDarkMode;
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.30,
       child: Column(
@@ -37,7 +39,7 @@ class PostActionButtonsInBottomSheetWidget extends StatelessWidget {
             width: MediaQuery.of(context).size.width * 0.8,
             height: MediaQuery.of(context).size.height * 0.1,
             decoration: BoxDecoration(
-              color: isDarkMode(context) ? Colors.grey[800] : Colors.grey[200],
+              color: isDarkMode ? Colors.grey[800] : Colors.grey[200],
               borderRadius: const BorderRadius.all(
                 Radius.circular(20),
               ),
@@ -73,7 +75,7 @@ class PostActionButtonsInBottomSheetWidget extends StatelessWidget {
             width: MediaQuery.of(context).size.width * 0.8,
             height: MediaQuery.of(context).size.height * 0.1,
             decoration: BoxDecoration(
-              color: isDarkMode(context) ? Colors.grey[800] : Colors.grey[200],
+              color: isDarkMode ? Colors.grey[800] : Colors.grey[200],
               borderRadius: const BorderRadius.all(
                 Radius.circular(20),
               ),
@@ -90,7 +92,7 @@ class PostActionButtonsInBottomSheetWidget extends StatelessWidget {
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: follow
-                          ? isDarkMode(context)
+                          ? isDarkMode
                               ? Colors.grey[200]
                               : Colors.black
                           : Colors.red,
