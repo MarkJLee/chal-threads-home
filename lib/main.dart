@@ -1,12 +1,18 @@
 import 'package:chal_threads_home/features/profile/repos/dark_mode_repo.dart';
 import 'package:chal_threads_home/features/profile/view_models/dark_mode_mv.dart';
+import 'package:chal_threads_home/firebase_options.dart';
 import 'package:chal_threads_home/router.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   final preferences = await SharedPreferences.getInstance();
   final repository = DarkModeRepository(preferences);

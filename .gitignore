@@ -359,3 +359,7 @@ fastlane/test_output
 iOSInjectionProject/
 
 # End of https://www.toptal.com/developers/gitignore/api/java,swift,dart,node,osx,android,firebase
+
+## custom firebase files
+firebase_options.dart
+firebase_app_id_file.json

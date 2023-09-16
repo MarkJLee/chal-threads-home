@@ -1,4 +1,6 @@
 import 'package:chal_threads_home/features/activity/activity_screen.dart';
+import 'package:chal_threads_home/features/authentication/views/create_account_screen.dart';
+import 'package:chal_threads_home/features/authentication/views/login_screen.dart';
 import 'package:chal_threads_home/features/home/home_screen.dart';
 import 'package:chal_threads_home/features/profile/views/privacy_screen.dart';
 import 'package:chal_threads_home/features/profile/views/profile_screen.dart';
@@ -13,8 +15,19 @@ final _shellNavigatorKey = GlobalKey<NavigatorState>();
 
 final GoRouter router = GoRouter(
   navigatorKey: _rootNavigatorKey,
-  initialLocation: HomeScreen.routeURL,
+  // initialLocation: HomeScreen.routeURL,
+  initialLocation: LoginScreen.routeURL,
   routes: [
+    GoRoute(
+      name: CreateAccountScreen.routeName,
+      path: CreateAccountScreen.routeURL,
+      builder: (context, state) => const CreateAccountScreen(),
+    ),
+    GoRoute(
+      name: LoginScreen.routeName,
+      path: LoginScreen.routeURL,
+      builder: (context, state) => const LoginScreen(),
+    ),
     ShellRoute(
       navigatorKey: _shellNavigatorKey,
       builder: (context, state, child) {
