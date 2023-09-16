@@ -1,9 +1,11 @@
+import 'package:chal_threads_home/features/authentication/repos/authentication_repo.dart';
+import 'package:chal_threads_home/features/authentication/views/login_screen.dart';
 import 'package:chal_threads_home/features/profile/view_models/dark_mode_mv.dart';
 import 'package:chal_threads_home/features/profile/views/privacy_screen.dart';
-import 'package:chal_threads_home/router.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 // 임시
 final isLoadingProvider = StateProvider<bool>((ref) => false);
@@ -44,7 +46,8 @@ class SettingsScreen extends ConsumerWidget {
               CupertinoDialogAction(
                 child: const Text('OK'),
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  ref.read(authRepo).signOut();
+                  context.goNamed(LoginScreen.routeName);
                 },
               ),
             ],
@@ -116,7 +119,7 @@ class SettingsScreen extends ConsumerWidget {
               fontSize: 18,
             ),
           ),
-          onTap: () => router.goNamed(PrivacyScreen.routeName),
+          onTap: () => context.goNamed(PrivacyScreen.routeName),
         ),
         ListTile(
           leading: const Icon(
