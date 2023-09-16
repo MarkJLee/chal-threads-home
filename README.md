@@ -88,6 +88,22 @@ This project replicates a segment of the Home screen from the Threads applicatio
 
 -   Migrate the dark mode toggle implementation from using MVVM with Provider to MVVM with Riverpod.
 
+### Firebase Authentication
+
+-   Initialize a Firebase project and integrate it into your Threads application, then implement account creation and sign-in screens.
+
+### Sign In Screen
+
+-   The "Sign In" page should have a clear link to the "Create Account" page.
+-   The "Sign In" page needs a simple form with two fields: "email" and "password".
+-   After filling out and submitting the form, the user should be signed in using Firebase.
+-   Once signed in, they should be directed to the "Home Screen".
+
+### Create Account Screen
+
+-   The "Create Account" page must incorporate a form containing two primary input fields: one for "email" and another for "password".
+-   Upon form submission, users should be registered via Firebase Authentication. Successful registration will then redirect the user to the "Home Screen".
+
 ## Demo Link
 
 -   [Threads-home](https://imgur.com/a/iWzhhGD)
