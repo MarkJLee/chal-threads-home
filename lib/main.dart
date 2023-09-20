@@ -36,7 +36,7 @@ class ThreadsApp extends ConsumerWidget {
     // final darkModeVM = Provider.of<DarkModeViewModel>(context, listen: true);
     final isDarkMode = ref.watch(darkModeProvider).isDarkMode;
     return MaterialApp.router(
-      routerConfig: router,
+      routerConfig: ref.watch(routerProvider),
       title: "Threads Clone",
       // themeMode: ThemeMode.system,
       themeMode: isDarkMode ? ThemeMode.dark : ThemeMode.light,

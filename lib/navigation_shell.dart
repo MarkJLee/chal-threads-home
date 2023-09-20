@@ -7,7 +7,6 @@ import 'package:chal_threads_home/features/profile/views/settings_screen.dart';
 import 'package:chal_threads_home/features/search/search_screen.dart';
 import 'package:chal_threads_home/features/widgets/modal_helper.dart';
 import 'package:chal_threads_home/features/widgets/threads_bottom_navigation_bar.dart';
-import 'package:chal_threads_home/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -97,7 +96,8 @@ class NavigationShell extends ConsumerWidget {
     }
   }
 
-  PreferredSizeWidget? _selectedAppBar(index, context, bool isDarkMode) {
+  PreferredSizeWidget? _selectedAppBar(
+      index, context, bool isDarkMode, WidgetRef ref) {
     final String location = GoRouterState.of(context).uri.toString();
     final bool isSettings = location.endsWith(SettingsScreen.routeURL);
     final bool isPrivacy = location.endsWith(PrivacyScreen.routeURL);
@@ -129,15 +129,16 @@ class NavigationShell extends ConsumerWidget {
                 ),
                 onPressed: () {
                   isSettings
-                      ? router.goNamed(ProfileScreen.routeName)
-                      : router.pop();
+                      // ? context.goNamed(ProfileScreen.routeName)
+                      ? GoRouter.of(context).go('/profile')
+                      : GoRouter.of(context).pop();
                 },
               ),
               GestureDetector(
                 onTap: () {
                   isSettings
-                      ? router.goNamed(ProfileScreen.routeName)
-                      : router.pop();
+                      ? GoRouter.of(context).goNamed(ProfileScreen.routeName)
+                      : GoRouter.of(context).pop();
                 },
                 child: Text(
                   "Back",
@@ -161,7 +162,7 @@ class NavigationShell extends ConsumerWidget {
     final index = _getCurrentIndex(context);
     return Scaffold(
       key: _scaffoldKey,
-      appBar: _selectedAppBar(index, context, isDarkMode),
+      appBar: _selectedAppBar(index, context, isDarkMode, ref),
       body: child,
       bottomNavigationBar: ThreadsBottomNavigationBar(
         currentIndex: index,

@@ -7,3 +7,22 @@
 //   final darkModeVM = context.read<DarkModeViewModel>();
 //   return darkModeVM.state.isDarkMode;
 // }
+
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+
+void showFirebaseErrorSnack(
+  BuildContext context,
+  Object? error,
+) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      action: SnackBarAction(
+        label: "OK",
+        onPressed: () {},
+      ),
+      content:
+          Text((error as FirebaseException).message ?? "something wen't wrong"),
+    ),
+  );
+}

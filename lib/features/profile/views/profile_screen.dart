@@ -3,11 +3,11 @@ import 'package:chal_threads_home/features/home/widgets/post_header_widget.dart'
 import 'package:chal_threads_home/features/home/widgets/post_media_widget.dart';
 import 'package:chal_threads_home/features/profile/view_models/dark_mode_mv.dart';
 import 'package:chal_threads_home/features/profile/views/settings_screen.dart';
-import 'package:chal_threads_home/router.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
   static const routeURL = "/profile";
@@ -48,8 +48,8 @@ class ProfileScreenState extends ConsumerState<ProfileScreen>
     return renderBox?.size.height ?? 50; // VerticalDivider 디폴트 높이는 50
   }
 
-  void _navigateToSettingsScreen() {
-    router.goNamed(SettingsScreen.routeName);
+  void _navigateToSettingsScreen(BuildContext context) {
+    context.goNamed(SettingsScreen.routeName);
   }
 
   @override
@@ -100,7 +100,7 @@ class ProfileScreenState extends ConsumerState<ProfileScreen>
                     ),
                     const SizedBox(width: 20),
                     GestureDetector(
-                      onTap: _navigateToSettingsScreen,
+                      onTap: () => _navigateToSettingsScreen(context),
                       child: const FaIcon(
                         FontAwesomeIcons.bars,
                         size: 24,
