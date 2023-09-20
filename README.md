@@ -8,6 +8,12 @@ This project replicates a segment of the Home screen from the Threads applicatio
 
 -   Implement a scrollable list to display posts.
 
+(Implementing features using Firebase, Riverpod, MVVM.)
+
+-   Posts should be fetched from Firestore.
+-   The Widget for displaying the post doesn't need a Text widget for the username or an Image widget for the avatar; instead, set it to "anonymous".
+-   Images must be loaded from Firebase Storage.
+
 ### Post Component
 
 -   Posts should be differentiated into two categories: textual and visual (with images).
@@ -39,6 +45,11 @@ This project replicates a segment of the Home screen from the Threads applicatio
 -   When the user taps on the attachment icon, the app shall navigate the user to the Camera Screen.
 -   On the Camera Screen, the app shall provide the capability for the user to capture a new photo or select an existing photo from the gallery.
 -   When the photo is captured or selected, the app shall navigate the user back to the Write Screen with the newly captured photo or the selected photo from the gallery.
+
+(Implementing features using Firebase, Riverpod, MVVM.)
+
+-   When a user creates a post, it should be stored in Firestore.
+-   They should have the capability to attach images to their post, which should be saved to Firebase Storage.
 
 ### Search Screen
 
