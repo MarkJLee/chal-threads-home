@@ -32,9 +32,12 @@ class PostViewModel extends AsyncNotifier<List<PostModel>> {
       return;
     }
 
+    List<String>? imageList;
+
     if (imageXFile != null) {
       File imageFile = File(imageXFile.path);
-      _postsRepository.uploadImage(imageFile, uid);
+      String imageUrl = await _postsRepository.uploadImage(imageFile, uid);
+      imageList = [imageUrl];
     }
     final newPost = PostModel(
       postId: "",
@@ -43,6 +46,7 @@ class PostViewModel extends AsyncNotifier<List<PostModel>> {
       uid: "",
       postText: postText,
       postTime: DateTime.now(),
+      images: imageList,
       numReplies: 0,
       likes: 0,
     );
