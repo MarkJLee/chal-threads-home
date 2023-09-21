@@ -1,5 +1,5 @@
 // modal_helpers.dart
-import 'package:chal_threads_home/features/write/write_screen.dart';
+import 'package:chal_threads_home/features/write/views/write_screen.dart';
 import 'package:flutter/material.dart';
 
 void showWriteModal(BuildContext context) {

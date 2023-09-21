@@ -1,28 +1,42 @@
 import 'dart:io';
 
+import 'package:chal_threads_home/features/write/view_models/post_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 
-class WriteScreen extends StatefulWidget {
+class WriteScreen extends ConsumerStatefulWidget {
   const WriteScreen({super.key});
 
   @override
-  State<WriteScreen> createState() => _WriteScreenState();
+  ConsumerState<WriteScreen> createState() => _WriteScreenState();
 }
 
-class _WriteScreenState extends State<WriteScreen> {
+class _WriteScreenState extends ConsumerState<WriteScreen> {
   final GlobalKey _textFieldKey = GlobalKey();
 
+  String _postText = "";
   bool _hasText = false;
   bool _showCameraOptions = false; // <-- 추가된 변수
 
   XFile? _selectedImage;
 
   void _onTextFieldChanged(String text) {
+    _postText = text;
+
     setState(() {
       _hasText = text.isNotEmpty;
     });
+  }
+
+  void _addNewPost() {
+    if (_hasText) {
+      ref
+          .read(postViewModelProvider.notifier)
+          .addNewPost(_postText, _selectedImage);
+      Navigator.pop(context);
+    }
   }
 
   // TextField 높이를 계산하는 함수
@@ -284,7 +298,7 @@ class _WriteScreenState extends State<WriteScreen> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () => Navigator.pop(context),
+                      onTap: _addNewPost,
                       child: Text(
                         "Post",
                         style: TextStyle(

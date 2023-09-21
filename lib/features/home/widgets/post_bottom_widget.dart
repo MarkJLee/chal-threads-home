@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 class PostBottomWidget extends StatelessWidget {
   final int replies;
   final int likes;
-  final List<String> repImages;
+  final List<String>? repImages;
 
   const PostBottomWidget({
     required this.replies,
     required this.likes,
-    required this.repImages,
+    this.repImages,
     super.key,
   });
 
@@ -18,7 +18,7 @@ class PostBottomWidget extends StatelessWidget {
       padding: const EdgeInsets.only(top: 15),
       child: Row(
         children: [
-          if (repImages.isNotEmpty)
+          if (repImages != null && repImages!.isNotEmpty)
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.09,
               height: MediaQuery.of(context).size.width * 0.09,
@@ -30,7 +30,7 @@ class PostBottomWidget extends StatelessWidget {
                     child: SizedBox(
                       width: MediaQuery.of(context).size.width * 0.04,
                       child: ClipOval(
-                        child: Image.asset(repImages[0]),
+                        child: Image.asset(repImages![0]),
                       ),
                     ),
                   ),
@@ -39,7 +39,7 @@ class PostBottomWidget extends StatelessWidget {
                     right: 10,
                     child: SizedBox(
                       width: MediaQuery.of(context).size.width * 0.03,
-                      child: ClipOval(child: Image.asset(repImages[1])),
+                      child: ClipOval(child: Image.asset(repImages![1])),
                     ),
                   ),
                   Positioned(
@@ -47,7 +47,7 @@ class PostBottomWidget extends StatelessWidget {
                     top: 0,
                     child: SizedBox(
                       width: MediaQuery.of(context).size.width * 0.05,
-                      child: ClipOval(child: Image.asset(repImages[2])),
+                      child: ClipOval(child: Image.asset(repImages![2])),
                     ),
                   ),
                 ],

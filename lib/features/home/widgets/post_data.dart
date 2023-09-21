@@ -8,10 +8,10 @@ class Post {
   final String account;
   final String postText;
   final String postTime;
-  final List<String> images;
+  final List<String>? images;
   final int replies;
   final int likes;
-  final List<String> repImages;
+  final List<String>? repImages;
   final RePost? rePost;
   final String? myReply; // for my Replies in ProfileScreen
 
@@ -21,10 +21,10 @@ class Post {
     required this.account,
     required this.postText,
     required this.postTime,
-    required this.images,
+    this.images,
     required this.replies,
     required this.likes,
-    required this.repImages,
+    this.repImages,
     this.rePost,
     this.myReply,
   });
