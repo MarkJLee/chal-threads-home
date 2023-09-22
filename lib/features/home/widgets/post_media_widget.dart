@@ -8,6 +8,15 @@ class PostMediaWidget extends StatelessWidget {
     this.images,
   }) : super(key: key);
 
+  Widget loadImage(String path) {
+    // URL로 시작하는 경우 Image.network를 반환, 그렇지 않으면 Image.asset 반환
+    if (path.startsWith('http') || path.startsWith('https')) {
+      return Image.network(path);
+    } else {
+      return Image.asset(path);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -34,7 +43,7 @@ class PostMediaWidget extends StatelessWidget {
                   child: (images == null || images!.isEmpty)
                       ? Container()
                       : images?.length == 1
-                          ? Image.asset(images![0])
+                          ? loadImage(images![0])
                           : SizedBox(
                               height: MediaQuery.of(context).size.height * 0.25,
                               child: ListView.builder(
@@ -43,7 +52,7 @@ class PostMediaWidget extends StatelessWidget {
                                 itemBuilder: (context, index) {
                                   return Padding(
                                     padding: const EdgeInsets.only(right: 8.0),
-                                    child: Image.asset(images![index]),
+                                    child: loadImage(images![index]),
                                   );
                                 },
                               ),

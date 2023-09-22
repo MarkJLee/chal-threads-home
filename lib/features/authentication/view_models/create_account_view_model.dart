@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:chal_threads_home/features/authentication/repos/authentication_repo.dart';
-import 'package:chal_threads_home/features/home/home_screen.dart';
+import 'package:chal_threads_home/features/home/views/home_screen.dart';
 import 'package:chal_threads_home/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

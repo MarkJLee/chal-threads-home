@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 // post와 reply 모두 PostModel
 class PostModel {
+  final String account;
   final String postId;
   final String? parentPostId;
   final bool follow;
@@ -16,6 +17,7 @@ class PostModel {
   final List<String>? replyImages;
 
   PostModel({
+    required this.account,
     required this.postId,
     this.parentPostId,
     required this.follow,
@@ -32,7 +34,8 @@ class PostModel {
 
   // Firestore 데이터를 PostModel 객체로 변환하는 일반 생성자
   PostModel.fromJson(Map<String, dynamic> json)
-      : postId = json['postId'],
+      : account = json['account'],
+        postId = json['postId'],
         parentPostId = json['parentPostId'],
         follow = json['follow'],
         userIcon = json['userIcon'],
@@ -52,6 +55,7 @@ class PostModel {
   // PostModel 객체를 Firestore에 저장하기 위해 Map 형태로 변환
   Map<String, dynamic> toJson() {
     return {
+      'account': account,
       'postId': postId,
       'parentPostId': parentPostId,
       'follow': follow,

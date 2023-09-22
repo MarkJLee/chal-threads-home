@@ -10,7 +10,7 @@ import 'package:image_picker/image_picker.dart';
 class PostViewModel extends AsyncNotifier<List<PostModel>> {
   late final PostsRepository _postsRepository;
   late final AuthenticationRepository _authRepo;
-  List<PostModel> _list = [];
+  final List<PostModel> _list = [];
 
   @override
   FutureOr<List<PostModel>> build() async {
@@ -21,14 +21,15 @@ class PostViewModel extends AsyncNotifier<List<PostModel>> {
     return posts;
   }
 
-  FutureOr<List<PostModel>> fetchPosts() async {
-    _list = await _postsRepository.loadPosts();
-    return _list;
+  Future<PostModel?> fetchRecentPost() async {
+    return await _postsRepository.getRecentPost();
   }
 
   Future<void> addNewPost(String postText, XFile? imageXFile) async {
     String? uid = _authRepo.user?.uid;
-    if (uid == null) {
+    String? email = _authRepo.user?.email;
+
+    if (uid == null || email == null) {
       return;
     }
 
@@ -39,7 +40,12 @@ class PostViewModel extends AsyncNotifier<List<PostModel>> {
       String imageUrl = await _postsRepository.uploadImage(imageFile, uid);
       imageList = [imageUrl];
     }
+
+    // account(username)은 임시로 email 앞부분을 사용
+    final account = email.split('@').first;
+
     final newPost = PostModel(
+      account: account, // 임시
       postId: "",
       follow: false,
       userIcon: "",
@@ -52,7 +58,15 @@ class PostViewModel extends AsyncNotifier<List<PostModel>> {
     );
 
     await _postsRepository.savePost(newPost);
-    fetchPosts();
+
+    // 새로 저장된 게시물 가져오기
+    PostModel? recentPost = await fetchRecentPost();
+    if (recentPost != null) {
+      // 새로 추가된 게시물을 목록의 시작 부분에 추가
+      _list.insert(0, recentPost);
+      // 상태 업데이트
+      state = AsyncValue.data([..._list]);
+    }
   }
 }
 

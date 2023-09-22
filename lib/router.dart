@@ -2,7 +2,7 @@ import 'package:chal_threads_home/features/activity/activity_screen.dart';
 import 'package:chal_threads_home/features/authentication/repos/authentication_repo.dart';
 import 'package:chal_threads_home/features/authentication/views/create_account_screen.dart';
 import 'package:chal_threads_home/features/authentication/views/login_screen.dart';
-import 'package:chal_threads_home/features/home/home_screen.dart';
+import 'package:chal_threads_home/features/home/views/home_screen.dart';
 import 'package:chal_threads_home/features/profile/views/privacy_screen.dart';
 import 'package:chal_threads_home/features/profile/views/profile_screen.dart';
 import 'package:chal_threads_home/features/profile/views/settings_screen.dart';

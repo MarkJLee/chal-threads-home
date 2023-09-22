@@ -9,11 +9,24 @@ class Post {
   final String postText;
   final String postTime;
   final List<String>? images;
-  final int replies;
+  final int numReplies;
   final int likes;
-  final List<String>? repImages;
+  final List<String>? replyImages;
   final RePost? rePost;
   final String? myReply; // for my Replies in ProfileScreen
+
+  // 상태에 동일한 포스트가 없을 경우에만 추가하도록 비교 연산자 수정
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is Post &&
+        other.account == account &&
+        other.postText == postText;
+  }
+
+  @override
+  int get hashCode => account.hashCode ^ postText.hashCode;
 
   Post({
     required this.follow,
@@ -22,9 +35,9 @@ class Post {
     required this.postText,
     required this.postTime,
     this.images,
-    required this.replies,
+    required this.numReplies,
     required this.likes,
-    this.repImages,
+    this.replyImages,
     this.rePost,
     this.myReply,
   });
@@ -41,9 +54,9 @@ List<Post> postsData = [
       "assets/0.jpg",
       "assets/10.jpg",
     ],
-    replies: 15,
+    numReplies: 15,
     likes: 320,
-    repImages: ["assets/p-0.jpg", "assets/p-1.jpg", "assets/p-2.jpg"],
+    replyImages: ["assets/p-0.jpg", "assets/p-1.jpg", "assets/p-2.jpg"],
   ),
   Post(
     follow: false,
@@ -52,9 +65,9 @@ List<Post> postsData = [
     postText: 'Did you see that adorable puppy? I can see!',
     postTime: '18m',
     images: [],
-    replies: 71,
+    numReplies: 71,
     likes: 452,
-    repImages: ["assets/p-0.jpg", "assets/p-1.jpg", "assets/p-3.jpg"],
+    replyImages: ["assets/p-0.jpg", "assets/p-1.jpg", "assets/p-3.jpg"],
   ),
   Post(
     follow: false,
@@ -63,9 +76,9 @@ List<Post> postsData = [
     postText: 'My dog is the cutest thing ever.',
     postTime: '4m',
     images: ["assets/7.jpg", "assets/13.jpg"],
-    replies: 85,
+    numReplies: 85,
     likes: 50,
-    repImages: ["assets/p-0.jpg", "assets/p-1.jpg", "assets/p-4.jpg"],
+    replyImages: ["assets/p-0.jpg", "assets/p-1.jpg", "assets/p-4.jpg"],
   ),
   Post(
     follow: false,
@@ -74,9 +87,9 @@ List<Post> postsData = [
     postText: "Dogs are truly a my best friend.",
     postTime: '48m',
     images: ["assets/1.jpg", "assets/16.jpg", "assets/5.jpg"],
-    replies: 40,
+    numReplies: 40,
     likes: 120,
-    repImages: ["assets/p-1.jpg", "assets/p-2.jpg", "assets/p-3.jpg"],
+    replyImages: ["assets/p-1.jpg", "assets/p-2.jpg", "assets/p-3.jpg"],
   ),
   Post(
     follow: true,
@@ -85,9 +98,9 @@ List<Post> postsData = [
     postText: "Dogs are truly a man's best friend.",
     postTime: '9m',
     images: ["assets/6.jpg", "assets/8.jpg"],
-    replies: 63,
+    numReplies: 63,
     likes: 156,
-    repImages: ["assets/p-1.jpg", "assets/p-2.jpg", "assets/p-4.jpg"],
+    replyImages: ["assets/p-1.jpg", "assets/p-2.jpg", "assets/p-4.jpg"],
   ),
   Post(
     follow: false,
@@ -96,9 +109,9 @@ List<Post> postsData = [
     postText: "Where are these dogs looking at?",
     postTime: '34m',
     images: ["assets/3.jpg"],
-    replies: 5,
+    numReplies: 5,
     likes: 66,
-    repImages: ["assets/p-2.jpg", "assets/p-3.jpg", "assets/p-4.jpg"],
+    replyImages: ["assets/p-2.jpg", "assets/p-3.jpg", "assets/p-4.jpg"],
   ),
   Post(
     follow: true,
@@ -107,9 +120,9 @@ List<Post> postsData = [
     postText: 'Puppies have the most innocent eyes.',
     postTime: '17m',
     images: ["assets/20.jpg"],
-    replies: 100,
+    numReplies: 100,
     likes: 160,
-    repImages: ["assets/p-3.jpg", "assets/p-4.jpg", "assets/p-0.jpg"],
+    replyImages: ["assets/p-3.jpg", "assets/p-4.jpg", "assets/p-0.jpg"],
   ),
   Post(
     follow: false,
@@ -118,9 +131,9 @@ List<Post> postsData = [
     postText: "My dog's wagging tail always cheers me up.",
     postTime: '2m',
     images: ["assets/17.jpg"],
-    replies: 72,
+    numReplies: 72,
     likes: 500,
-    repImages: ["assets/p-3.jpg", "assets/p-4.jpg", "assets/p-1.jpg"],
+    replyImages: ["assets/p-3.jpg", "assets/p-4.jpg", "assets/p-1.jpg"],
   ),
   Post(
     follow: true,
@@ -129,9 +142,9 @@ List<Post> postsData = [
     postText: 'Every dog has its day.',
     postTime: '46m',
     images: ["assets/15.jpg"],
-    replies: 21,
+    numReplies: 21,
     likes: 38,
-    repImages: ["assets/p-3.jpg", "assets/p-4.jpg", "assets/p-2.jpg"],
+    replyImages: ["assets/p-3.jpg", "assets/p-4.jpg", "assets/p-2.jpg"],
   ),
   Post(
     follow: true,
@@ -140,9 +153,9 @@ List<Post> postsData = [
     postText: 'My dog is the cutest thing ever.',
     postTime: '52m',
     images: ["assets/2.jpg"],
-    replies: 71,
+    numReplies: 71,
     likes: 393,
-    repImages: ["assets/p-4.jpg", "assets/p-3.jpg", "assets/p-2.jpg"],
+    replyImages: ["assets/p-4.jpg", "assets/p-3.jpg", "assets/p-2.jpg"],
   ),
   Post(
     account: 'Mark_J',
@@ -152,9 +165,9 @@ List<Post> postsData = [
     userIcon: "assets/p-mark.jpg",
     follow: true,
     images: [],
-    replies: 1,
+    numReplies: 1,
     likes: 1,
-    repImages: [],
+    replyImages: [],
   ),
   Post(
     account: 'Mark_J',
@@ -163,9 +176,9 @@ List<Post> postsData = [
     userIcon: "assets/p-mark.jpg",
     follow: true,
     images: ["assets/2.jpg"],
-    replies: 1,
+    numReplies: 1,
     likes: 1,
-    repImages: [],
+    replyImages: [],
   ),
   Post(
     account: 'Mark_J',
@@ -175,9 +188,9 @@ List<Post> postsData = [
     userIcon: "assets/p-mark.jpg",
     follow: true,
     images: ["assets/17.jpg"],
-    replies: 1,
+    numReplies: 1,
     likes: 1,
-    repImages: [],
+    replyImages: [],
   ),
   Post(
     account: 'Podo',
@@ -186,14 +199,14 @@ List<Post> postsData = [
     userIcon: "assets/p-4.jpg",
     follow: true,
     images: [],
-    replies: 1,
+    numReplies: 1,
     likes: 1,
-    repImages: [],
+    replyImages: [],
     rePost: RePost(
       userIcon: "assets/p-2.jpg",
       account: 'Kalmar',
       postText: "My dog is the cutest thing ever.",
-      replies: 1,
+      numReplies: 1,
     ),
     myReply:
         "This little furball is mine, I tell you! 😭. I found it in the woods, and it was so cute that I couldn't resist taking it home.",

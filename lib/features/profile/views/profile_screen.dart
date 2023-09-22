@@ -1,4 +1,4 @@
-import 'package:chal_threads_home/features/home/widgets/post_data.dart';
+import 'package:chal_threads_home/features/home/models/post_data.dart';
 import 'package:chal_threads_home/features/home/widgets/post_header_widget.dart';
 import 'package:chal_threads_home/features/home/widgets/post_media_widget.dart';
 import 'package:chal_threads_home/features/profile/view_models/dark_mode_mv.dart';
@@ -513,7 +513,7 @@ class ProfileScreenState extends ConsumerState<ProfileScreen>
                                                     ),
                                                     const SizedBox(height: 10),
                                                     Text(
-                                                      "${post.rePost?.replies} replies",
+                                                      "${post.rePost?.numReplies} replies",
                                                       style: const TextStyle(
                                                         fontSize: 16,
                                                       ),

@@ -47,16 +47,6 @@ class _WriteScreenState extends ConsumerState<WriteScreen> {
   }
 
   Future<void> _onPaperClipPressed() async {
-    // final image = await ImagePicker().pickImage(
-    //   // source: ImageSource.gallery,
-    //   source: ImageSource.camera,
-    // );
-    // if (image != null) {
-    //   setState(() {
-    //     _selectedImage = image;
-    //   });
-    // }
-
     setState(() {
       _showCameraOptions = true;
     });

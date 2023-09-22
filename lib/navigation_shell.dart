@@ -1,5 +1,5 @@
 import 'package:chal_threads_home/features/activity/activity_screen.dart';
-import 'package:chal_threads_home/features/home/home_screen.dart';
+import 'package:chal_threads_home/features/home/views/home_screen.dart';
 import 'package:chal_threads_home/features/profile/view_models/dark_mode_mv.dart';
 import 'package:chal_threads_home/features/profile/views/privacy_screen.dart';
 import 'package:chal_threads_home/features/profile/views/profile_screen.dart';

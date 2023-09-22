@@ -28,6 +28,22 @@ class PostsRepository {
     await userPostDoc.set(post.toJson());
   }
 
+  Future<PostModel?> getRecentPost() async {
+    if (uid == null) return null;
+
+    var userPostsRef = _db.collection("posts").doc(uid).collection("userPosts");
+
+    // 최근 업로드 포스트
+    QuerySnapshot snapshot =
+        await userPostsRef.orderBy("postTime", descending: true).limit(1).get();
+
+    if (snapshot.docs.isNotEmpty) {
+      return PostModel.fromJson(
+          snapshot.docs.first.data() as Map<String, dynamic>);
+    }
+    return null;
+  }
+
   Future<List<PostModel>> loadPosts() async {
     QuerySnapshot snapshot = await _db.collection("posts").get();
     return snapshot.docs

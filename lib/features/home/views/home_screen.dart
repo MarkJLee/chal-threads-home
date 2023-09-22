@@ -1,24 +1,43 @@
+import 'package:chal_threads_home/features/home/view_models/home_view_models.dart';
 import 'package:chal_threads_home/features/home/widgets/post_bottom_widget.dart';
-import 'package:chal_threads_home/features/home/widgets/post_data.dart';
 import 'package:chal_threads_home/features/home/widgets/post_header_widget.dart';
 import 'package:chal_threads_home/features/home/widgets/post_media_widget.dart';
+import 'package:chal_threads_home/features/write/models/post_model.dart';
+import 'package:chal_threads_home/features/write/view_models/post_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerWidget {
   static String routeURL = "/";
   static String routeName = "home";
-  HomeScreen({
+  const HomeScreen({
     Key? key,
   }) : super(key: key);
 
-  final List<Post> filteredData =
-      postsData.where((element) => element.account != "Mark_J").toList();
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final posts = ref.watch(homeViewModelProvider);
+
+    ref.listen<AsyncValue<List<PostModel>>>(postViewModelProvider,
+        (previous, current) {
+      current.when(
+        data: (dataList) {
+          if (dataList.isNotEmpty) {
+            PostModel postModel = dataList[0];
+            ref
+                .read(homeViewModelProvider.notifier)
+                .handleNewPostModel(postModel);
+          }
+        },
+        loading: () {},
+        error: (_, __) {},
+      );
+    });
+
     return ListView.builder(
-      itemCount: filteredData.length,
+      itemCount: posts.length,
       itemBuilder: (context, index) {
-        final post = filteredData[index];
+        final post = posts[index];
         return Padding(
           padding: const EdgeInsets.all(10),
           child: SizedBox(
@@ -37,8 +56,8 @@ class HomeScreen extends StatelessWidget {
                   images: post.images, // Use the images from the post data
                 ),
                 PostBottomWidget(
-                  repImages: post.repImages,
-                  replies: post.replies,
+                  repImages: post.replyImages,
+                  replies: post.numReplies,
                   likes: post.likes,
                 ),
                 const Divider()
