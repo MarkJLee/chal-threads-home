@@ -6,7 +6,7 @@ import 'package:chal_threads_home/features/home/views/home_screen.dart';
 import 'package:chal_threads_home/features/profile/views/privacy_screen.dart';
 import 'package:chal_threads_home/features/profile/views/profile_screen.dart';
 import 'package:chal_threads_home/features/profile/views/settings_screen.dart';
-import 'package:chal_threads_home/features/search/search_screen.dart';
+import 'package:chal_threads_home/features/search/views/search_screen.dart';
 import 'package:chal_threads_home/navigation_shell.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -50,7 +50,7 @@ final routerProvider = Provider((ref) {
           GoRoute(
             path: HomeScreen.routeURL,
             name: HomeScreen.routeName,
-            builder: (context, state) => HomeScreen(),
+            builder: (context, state) => const HomeScreen(),
           ),
           GoRoute(
             path: SearchScreen.routeURL,

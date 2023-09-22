@@ -4,7 +4,7 @@ import 'package:chal_threads_home/features/profile/view_models/dark_mode_mv.dart
 import 'package:chal_threads_home/features/profile/views/privacy_screen.dart';
 import 'package:chal_threads_home/features/profile/views/profile_screen.dart';
 import 'package:chal_threads_home/features/profile/views/settings_screen.dart';
-import 'package:chal_threads_home/features/search/search_screen.dart';
+import 'package:chal_threads_home/features/search/views/search_screen.dart';
 import 'package:chal_threads_home/features/widgets/modal_helper.dart';
 import 'package:chal_threads_home/features/widgets/threads_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
