@@ -363,3 +363,6 @@ iOSInjectionProject/
 ## custom firebase files
 firebase_options.dart
 firebase_app_id_file.json
+GoogleService-Info.plist
+Info.plist
+
