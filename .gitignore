@@ -32,6 +32,10 @@ render.experimental.xml
 
 # Google Services (e.g. APIs or Firebase)
 google-services.json
+firebase_options.dart
+firebase_app_id_file.json
+googleservice-info.plist
+info.plist
 
 # Android Profiling
 *.hprof
@@ -361,8 +365,5 @@ iOSInjectionProject/
 # End of https://www.toptal.com/developers/gitignore/api/java,swift,dart,node,osx,android,firebase
 
 ## custom firebase files
-firebase_options.dart
-firebase_app_id_file.json
-GoogleService-Info.plist
-Info.plist
+
 
