@@ -3,6 +3,7 @@ import 'package:chal_threads_home/features/home/widgets/post_header_widget.dart'
 import 'package:chal_threads_home/features/home/widgets/post_media_widget.dart';
 import 'package:chal_threads_home/features/profile/view_models/dark_mode_mv.dart';
 import 'package:chal_threads_home/features/profile/views/settings_screen.dart';
+import 'package:chal_threads_home/features/widgets/modal_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -242,7 +243,7 @@ class ProfileScreenState extends ConsumerState<ProfileScreen>
                           child: CupertinoButton(
                             minSize: 0, // 기본 44로 설정되어 있음
                             padding: EdgeInsets.zero,
-                            onPressed: () {},
+                            onPressed: () => showEditProfileModal(context),
                             child: Text(
                               "Edit profile",
                               style: TextStyle(

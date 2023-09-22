@@ -1,6 +1,6 @@
 class UserModel {
   final String uid;
-  final String name;
+  final String account;
   final String email;
   final String? avatar;
   final String? bio;
@@ -9,7 +9,7 @@ class UserModel {
 
   UserModel({
     required this.uid,
-    required this.name,
+    required this.account,
     required this.email,
     this.avatar,
     this.bio,
@@ -19,7 +19,7 @@ class UserModel {
 
   UserModel.fromJson(Map<String, dynamic> json)
       : uid = json['uid'],
-        name = json['name'],
+        account = json['account'],
         email = json['email'],
         avatar = json['avatar'] ?? '',
         bio = json['bio'] ?? '',
@@ -33,7 +33,7 @@ class UserModel {
   Map<String, dynamic> toJson() {
     return {
       'uid': uid,
-      'name': name,
+      'account': account,
       'email': email,
       'avatar': avatar,
       'bio': bio,
