@@ -10,9 +10,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  if (Firebase.apps.isEmpty) {
+    await Firebase.initializeApp(
+      name:
+          "ChalThreads", // https://stackoverflow.com/questions/70812697/a-firebase-app-named-default-already-exists/71644195#71644195?newreg=1ce9af4c61da4cf992581f7e8b35dcfc
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  }
 
   final preferences = await SharedPreferences.getInstance();
   final repository = DarkModeRepository(preferences);
